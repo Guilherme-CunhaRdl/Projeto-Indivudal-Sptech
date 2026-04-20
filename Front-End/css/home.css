@@ -201,3 +201,139 @@ ele basicamente pede pro navegador desativar essa barra*/
 
 
 
+/* SOBRE MIM */
+
+.div_contSobreMim{
+  display: flex;
+  width: 100%;
+  min-height:600px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  justify-content: center;
+
+}
+
+.div_sobreMim{
+  width: 80%;
+  background-color:#1e7faf ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap:20px;
+}
+
+.div_imgSobreMim img{
+  border-radius: 100%;
+  margin: 20px;
+  width: 350px;
+  height: 350px;
+}
+
+
+
+
+.div_conteudoSobreMim{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px;
+}
+
+.span_sobreMim{
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.p_sobreMim{
+  font-size: 18px;
+}
+
+.btn_ghibliFest{
+  margin:30px 0px;
+  background-color: #6eb08e;
+  font-size: 20px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.btn_ghibliFest:hover{
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+
+.div_conteudoBaixoSobre{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 40px;
+}
+
+
+
+.div_tecnologiasImg{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.img_tecnologias{
+  width: 50px;
+  height: 50px;
+}
+
+.div_redeSocial{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.div_caixaRedeSocial{
+  font-size: 14px;
+  text-align: start;
+  border: white 2px solid;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.linha{
+  width: 2px;
+  height: 500px;
+  background-color: white;
+}
+
+.linhaP{
+  width: 2px;
+  height: auto;
+  align-self: stretch;
+  background-color: white;
+}
+
+.linhaH{
+  width: 100%;
+  max-width:  1000px;
+  height: 1px;
+  margin: 10px;
+  background-color: white;
+}
+
+
+
+
+
+
+
+
