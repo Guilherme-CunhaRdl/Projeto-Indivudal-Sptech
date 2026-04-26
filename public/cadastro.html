@@ -1,59 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/cadastro.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-        />
-        <title>Cadastro - Biblioteca do Howl</title>
-    </head>
-    <body>
-        <div class="div_container">
-            <div class="div_esquerda">
-                <a href="index.html" class="btn_voltar">
-                    <i class="bi bi-arrow-left"></i> Voltar
-                </a>
-                <h1 class="titulo">- CADASTRO -</h1>
+<html lang="pt-br">
 
-                <div class="inputBox foto">
-                    
-                    <label for="iptFoto" class="custom-file"><input type="file" id="iptFoto"  /></label>
-                   
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/cadastro.css" />
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  />
 
-                </div>
-                
-                <div class="inputBox">
-                    <input type="text" placeholder="Usuario" />
-                    <span class="icon"><i class="bi bi-person"></i></span>
-                </div>
+  <title>Cadastro - Biblioteca do Howl</title>
 
-                <div class="inputBox">
-                    <input type="email" placeholder="E-MAIL" />
-                    <span class="icon"> <i class="bi bi-envelope"></i></span>
-                </div>
+  <script src="./js/sessao.js"></script>
 
-                <div class="inputBox">
-                    <input type="password" placeholder="SENHA" />
-                    <span class="icon"><i class="bi bi-eye"></i></span>
-                </div>
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
 
-                <div class="inputBox">
-                    <input type="password" placeholder="SENHA" />
-                    <span class="icon"><i class="bi bi-eye"></i></span>
-                </div>
+<body onload="listar()">
+  <div class="div_container">
+    <div class="div_esquerda">
+        <a href="index.html" class="btn_voltar">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+        <h1 class="titulo">- CADASTRO -</h1>
 
-                <button class="btn_entrar">CRIAR CONTA</button>
+        <div class="inputBox foto">
+            
+            <label for="iptFoto" class="custom-file"><input type="file" id="iptFoto"  /></label>
+           
 
-                <p>Ja possui uma conta? <a href="login.html">Entre agora!</a></p>
-            </div>
-
-            <div class="div_direita">
-     
-                <img src="./assets/casteloAnimadoFundo.png" class="CasteloAnimado" alt="" />
-            </div>
         </div>
-    </body>
+        
+        <div class="inputBox">
+            <input type="text" placeholder="Usuario" id="nome_input" />
+            <span class="icon"><i class="bi bi-person"></i></span>
+        </div>
+
+        <div class="inputBox">
+            <input type="email" placeholder="E-MAIL" id="email_input" />
+            <span class="icon"> <i class="bi bi-envelope"></i></span>
+        </div>
+
+        <div class="inputBox">
+            <input type="password" placeholder="SENHA" id="senha_input" />
+            <span class="icon"><i class="bi bi-eye"></i></span>
+        </div>
+
+        <div class="inputBox">
+            <input type="password" placeholder="SENHA" id="confirmacao_senha_input" />
+            <span class="icon"><i class="bi bi-eye"></i></span>
+        </div>
+
+        <button class="btn_entrar" onclick="cadastrar()">CRIAR CONTA</button>
+
+        <p>Ja possui uma conta? <a href="login.html">Entre agora!</a></p>
+    </div>
+
+    <div class="div_direita">
+
+        <img src="./assets/casteloAnimadoFundo.png" class="CasteloAnimado" alt="" />
+    </div>
+</div>
+</body>
+
 </html>
+
+<script>
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;  
+    var idEmpresaVincular
+
+   
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" 
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
