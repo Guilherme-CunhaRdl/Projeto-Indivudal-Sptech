@@ -5,17 +5,13 @@
     font-family: "ITC Avant Garde Gothic", sans-serif;
 }
 
-
-
-
 .div_container {
     display: flex;
     width: 100vw;
     height: 100vh;
-
 }
 
-.div_esquerda{
+.div_esquerda {
     width: 50%;
     height: 100%;
     background-color: #222222;
@@ -26,22 +22,21 @@
     justify-content: center;
 }
 
-.titulo{
+.titulo {
     color: white;
     text-align: center;
     font-size: 60px;
-    padding-bottom:1em;
+ 
 }
 
 .inputBox {
     position: relative;
     width: 60%;
-    
 }
 
 .inputBox input {
     width: 100%;
-    padding: 12px 40px 12px 12px; 
+    padding: 12px 40px 12px 12px;
     background: transparent;
     border: 4px solid #ccc;
     border-radius: 6px;
@@ -67,13 +62,13 @@
     padding-right: 5px;
 }
 
-.div_direita{
+.div_direita {
     width: 50%;
     height: 100%;
-    background-color: #6faf8f;
+    background: linear-gradient(135deg, #7daed3, #4f7c82);
 }
 
-.btn_entrar{
+.btn_entrar {
     width: 350px;
     height: 50px;
     font-size: 25px;
@@ -90,21 +85,12 @@
     transform: translateY(-2px);
 }
 
-.div_esquerda p{
+.div_esquerda p {
     color: white;
 }
 
-.div_esquerda p a{
+.div_esquerda p a {
     color: rgb(30, 129, 241);
-}
-
-
-.div_direita {
-    display: flex;
-    flex-direction: column;
-   justify-content: center;
-    align-items: center;
-  
 }
 
 .btn_voltar {
@@ -125,15 +111,48 @@
     transform: translateX(-3px);
 }
 
+.div_direita {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+.foto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #ccc;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-image: url('../assets/Upload.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
-@keyframes mover {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(20px); }
-    100% { transform: translateY(0); }
-  }
+.foto input{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    opacity: 0;
+    
+}
 
-.totoro{
-    width: 600px;
+@keyframes andar {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(40px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.CasteloAnimado {
+    width: 550px;
     height: auto;
-    animation: mover 6s infinite ease-in-out;
+    animation: andar 8s infinite ease-in-out;
+    opacity: 0.6;
 }
