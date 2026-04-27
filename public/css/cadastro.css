@@ -34,15 +34,15 @@
     width: 60%;
 }
 
-.inputBox input {
+.ipt_cadastro {
     width: 100%;
-    padding: 12px 40px 12px 12px;
+    padding: 12px 30px 12px 12px;
     background: transparent;
     border: 4px solid #ccc;
     border-radius: 6px;
     color: white;
     outline: none;
-    height: 60px;
+    height: 50px;
     font-size: 20px;
     transition: 0.2s ease-in;
 }
@@ -85,9 +85,7 @@
     transform: translateY(-2px);
 }
 
-.div_esquerda p {
-    color: white;
-}
+
 
 .div_esquerda p a {
     color: rgb(30, 129, 241);
@@ -122,8 +120,8 @@
     align-items: center;
     justify-content: center;
     border: 4px solid #ccc;
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 100%;
     background-image: url('../assets/Upload.png');
     background-size: cover;
@@ -155,4 +153,17 @@
     height: auto;
     animation: andar 8s infinite ease-in-out;
     opacity: 0.6;
+}
+
+.inputErro {
+    border-color: #ff4d4d ;
+}
+
+.msg_erro{
+    color: red;
+    text-align: center;
+}
+
+.P_possuiConta{
+    color: white;
 }
