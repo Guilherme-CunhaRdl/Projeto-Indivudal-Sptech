@@ -39,7 +39,7 @@
     
 }
 
-.inputBox input {
+.ipt_login {
     width: 100%;
     padding: 12px 40px 12px 12px; 
     background: transparent;
@@ -90,9 +90,7 @@
     transform: translateY(-2px);
 }
 
-.div_esquerda p{
-    color: white;
-}
+
 
 .div_esquerda p a{
     color: rgb(30, 129, 241);
@@ -136,4 +134,17 @@
     width: 600px;
     height: auto;
     animation: mover 6s infinite ease-in-out;
+}
+
+.inputErro {
+    border-color: #ff4d4d ;
+}
+
+.msg_erro{
+    color: red;
+    
+}
+
+.P_possuiConta{
+    color: white;
 }

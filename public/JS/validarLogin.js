@@ -58,3 +58,43 @@ function entrar() {
     return false;
 }
 
+
+function validarLogin(){
+    loginValido = true;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    let mensagemDeErro = 'Contem um erro no login, veifique as informações e tente novamente'
+
+    if (emailVar == "" || senhaVar == "") {
+        loginValido = false
+    }
+
+
+    if(!emailVar.includes('@')){
+        loginValido = false
+    }
+
+    if(!emailVar.includes('.')){
+        loginValido = false
+    }
+
+    if(emailVar.includes(' ')){
+        loginValido = false
+    }
+
+    if(senhaVar.includes(' ')){
+        loginValido = false
+    }
+
+    
+
+   if(loginValido == false){
+        idMsg_erro.innerHTML = mensagemDeErro
+        email_input.classList.add("inputErro");
+        senha_input.classList.add("inputErro");
+        return;
+   }else{
+    entrar();
+   }
+}
+
