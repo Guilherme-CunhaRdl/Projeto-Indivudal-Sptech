@@ -33,11 +33,15 @@ function entrar() {
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "index.html";
+                        window.location = "./index.html";
                     }, 1000); // apenas para exibir o loading
                 });
             } else {
                 console.log("Houve um erro ao tentar realizar o login!");
+                idMsg_erro.innerHTML = 'Contem um erro no login, veifique as informações e tente novamente'
+                email_input.classList.add("inputErro");
+                senha_input.classList.add("inputErro");
+                
 
                 resposta.text().then((texto) => {
                     console.error(texto);
@@ -58,6 +62,9 @@ function validarLogin(){
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     let mensagemDeErro = 'Contem um erro no login, veifique as informações e tente novamente'
+
+    email_input.classList.remove("inputErro");
+    senha_input.classList.remove("inputErro");
 
     if (emailVar == "" || senhaVar == "") {
         loginValido = false
