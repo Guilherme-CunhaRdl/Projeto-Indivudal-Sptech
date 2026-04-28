@@ -105,13 +105,12 @@ function validarNome() {
         nome_input.classList.add("inputErro");
         erroCadastro = true;
         ipt_nomeErro.innerHTML = "Campo Vazio";
+        return;
     } else {
         ipt_nomeErro.innerHTML = "";
     }
 
-    if (erroCadastro == true) {
-        return;
-    }
+
 
     if (nomeVar.length <= 3) {
         nome_input.classList.add("inputErro");
@@ -146,6 +145,40 @@ function validarEmail() {
     erroCadastro = false;
     let indiceDoArroba = 0;
 
+    let listaCaracEspecEmail = [
+        "!",
+        "#",
+        "$",
+        "%",
+        "¨",
+        "&",
+        "*",
+        "(",
+        ")",
+        "-",
+        "_",
+        "=",
+        "+",
+        "[",
+        "]",
+        "{",
+        "}",
+        ";",
+        ":",
+        "/",
+        "?",
+        ",",
+        "<",
+        ">",
+        "\\",
+        "|",
+        "'",
+        '"',
+        "`",
+        "~",
+        "^",
+    ];
+
     var emailVar = email_input.value;
 
     email_input.classList.remove("inputErro");
@@ -157,6 +190,20 @@ function validarEmail() {
         return;
     } else {
         ipt_emailErro.innerHTML = "";
+    }
+
+    for (let i = 0; i < listaCaracEspecEmail.length; i++) {
+        if (emailVar.includes(listaCaracEspecEmail[i])) {
+            email_input.classList.add("inputErro");
+            erroCadastro = true;
+            ipt_emailErro.innerHTML =
+                "Email não pode conter caracteres especiais alem de '@' e '.' ";
+            break;
+        }
+    }
+
+    if (erroCadastro == true) {
+        return;
     }
 
     if(!emailVar.includes('@')){
@@ -207,27 +254,12 @@ function validarSenha() {
     senha_input.classList.remove("inputErro");
     confirmacao_senha_input.classList.remove("inputErro");
 
-    
-
-    if (senhaVar != confirmacaoSenhaVar) {
-        senha_input.classList.add("inputErro");
-        confirmacao_senha_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_confirmarSenhaErro.innerHTML = "Senhas não coincidem";
-        ipt_senhaErro.innerHTML = "Senhas não coincidem";
-    } else {
-        ipt_confirmarSenhaErro.innerHTML = "";
-        ipt_senhaErro.innerHTML = "";
-    }
-
-    if (erroCadastro == true) {
-        return;
-    }
 
     if (senhaVar == "") {
         senha_input.classList.add("inputErro");
         erroCadastro = true;
         ipt_senhaErro.innerHTML = "Campo Vazio";
+        return;
     } else {
         ipt_senhaErro.innerHTML = "";
     }
@@ -236,7 +268,22 @@ function validarSenha() {
         confirmacao_senha_input.classList.add("inputErro");
         erroCadastro = true;
         ipt_confirmarSenhaErro.innerHTML = "Campo Vazio";
+        return;
     } else {
         ipt_confirmarSenhaErro.innerHTML = "";
     }
+
+    if (senhaVar != confirmacaoSenhaVar) {
+        senha_input.classList.add("inputErro");
+        confirmacao_senha_input.classList.add("inputErro");
+        erroCadastro = true;
+        ipt_confirmarSenhaErro.innerHTML = "Senhas não coincidem";
+        ipt_senhaErro.innerHTML = "Senhas não coincidem";
+        return;
+    } else {
+        ipt_confirmarSenhaErro.innerHTML = "";
+        ipt_senhaErro.innerHTML = "";
+    }
+
+
 }
