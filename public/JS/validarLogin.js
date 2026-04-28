@@ -4,13 +4,7 @@ function entrar() {
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
 
-    if (emailVar == "" || senhaVar == "") {
-        console.log('Campos Vazios')
-        finalizarAguardar();
-        return false;
-    } else {
-        setInterval(sumirMensagem, 5000);
-    }
+
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
