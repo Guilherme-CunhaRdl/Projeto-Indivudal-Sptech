@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/filmes.css" />
+        <link rel="stylesheet" href="./css/nav.css" />
+        <title>FILMES -Biblioteca do Howl</title>
+    </head>
+    <body>
+        <div id="navbar"></div>
+
+        <div class="div_container">
+            <div class="banner_filmes">
+                <img src="./assets/BannerFilmes.png" alt="" />
+            </div>
+            <div class="div_filtros">
+                <div class="div_filtrosPesquisa">
+                    <input
+                        type="text"
+                        class="ipt_pesquisar"
+                        placeholder="Digite o nome do Filme aqui"
+                    />
+                    <select name="Todos os filmes" id="" class="opt_filtro">
+                        <option value="" disabled selected>
+                            Todos os filmes
+                        </option>
+                        <option value="">A</option>
+                        <option value="">A</option>
+                    </select>
+
+                    <select name="Ordenar Por" id="" class="opt_filtro">
+                        <option value="" disabled selected>Ordenar Por</option>
+                        <option value="">A</option>
+                        <option value="">A</option>
+                    </select>
+                </div>
+
+                <div class="div_btnFiltros">
+                    <button class="btn_filtos">Filtros</button>
+                </div>
+            </div>
+            <div class="container_Filmes">
+                <div class="card_filme">
+                    <img src="./assets/Princesa_Mononoke.webp" alt="" />
+                    <div class="texto_sobre">
+                        <h2>Princesa Mononoke</h2>
+                        <p>1997 • 2h 14min</p>
+                        <p>
+                            Ashitaka, um príncipe amaldiçoado que busca a cura e
+                            tenta mediar a guerra entre Lady Eboshi, líder da
+                            Cidade de Ferro, e San (a Princesa Mononoke), uma
+                            humana criada por lobos.
+                        </p>
+                        <button>Ver detalhes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    // Faz uma requisição pra pagina
+    fetch("navbar.html")
+        //Transforma esse negocio da resposta em HTML
+        .then((res) => res.text())
+
+        // ai quando ele chega ele insere no HTML
+        .then((data) => {
+            document.getElementById("navbar").innerHTML = data;
+        });
+</script>
