@@ -16,7 +16,8 @@ idFilme INT PRIMARY KEY AUTO_INCREMENT,
 nomeFilme VARCHAR(100),
 descFilme VARCHAR(250),
 dataLancamento INT,
-qtdMinutos INT
+qtdMinutos INT,
+imgFilme VARCHAR(255)
 );
 
 CREATE TABLE avaliacao(
@@ -86,6 +87,18 @@ CONSTRAINT chfkQuizResp FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz),
 CONSTRAINT chPkQuizRespondido PRIMARY KEY(idQuizRespondido,fkUsuario,fkQuiz)
 );
 
+
+
+
+INSERT INTO filme (nomeFilme, descFilme, dataLancamento, qtdMinutos,imgFilme) VALUES
+('A Viagem de Chihiro', 'Uma garota entra em um mundo espiritual e precisa salvar seus pais.', 2001, 125,'Princesa_Mononoke.webp'),
+('Meu Amigo Totoro', 'Duas irmãs conhecem criaturas mágicas na floresta.', 1988, 86,'Princesa_Mononoke.webp'),
+('O Castelo Animado', 'Uma jovem é amaldiçoada e busca ajuda em um castelo mágico.', 2004, 119,'Princesa_Mononoke.webp'),
+('Princesa Mononoke', 'Um guerreiro se envolve em um conflito entre humanos e espíritos da floresta.', 1997, 134,'CasteloAnimado.webp'),
+('O Serviço de Entregas da Kiki', 'Uma jovem bruxa começa um serviço de entregas em uma cidade.', 1989, 103,'CasteloAnimado.webp'),
+('Ponyo', 'Um peixinho mágico deseja se tornar humano.', 2008, 101,'Viagem_de_Chihiro_capa.webp'),
+('O Conto da Princesa Kaguya', 'Uma menina misteriosa cresce rapidamente e revela sua origem.', 2013, 137,'Viagem_de_Chihiro_capa.webp'),
+('Vidas ao Vento', 'A história de um engenheiro apaixonado por aviação.', 2013, 126,'Viagem_de_Chihiro_capa.webp');
 
 
 
