@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/filmeEspec.css" />
+        <link rel="stylesheet" href="./css/nav.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="navbar"></div>
+
+        <div class="div_banner">
+            <img src="./assets/ChihiroBanner.jpg" alt="" class="img_banner" />
+
+            <div class="overlay"></div>
+
+            <div class="conteudo_banner">
+                <a href="./filmes.html" class="voltar"
+                    ><i class="bi bi-arrow-left-circle icon"></i> Voltar para
+                    filmes</a
+                >
+                <div class="div_infoFilme">
+                    <span class="ano">2001</span>
+                    <h1 class="titulo">Serviço de Entregas da Kiki</h1>
+
+                    <div class="info">
+                        <span>2h 05min</span>
+                        <span>•</span>
+                        <span>Aventura, Fantasia</span>
+                        <span>•</span>
+                        <span>Livre</span>
+                    </div>
+                </div>
+                <div class="div_botoes">
+                    <button class="btn_principal" onclick="mudarCoracao()">
+                        <div id="coracao"><i class="bi bi-heart"></i></div>
+                        Adicionar aos Favoritos
+                    </button>
+                    <button class="btn_secundario">
+                        <i class="bi bi-bookmark-plus"></i>Adicionar em Quero Assitir
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container_detalhes">
+            <div class="div_conteudoFilme">
+                <div class="div_poster">
+                    <img src="./assets/Viagem_de_Chihiro_capa.webp" alt="" />
+                </div>
+
+               
+                    <div class="info_extra">
+                        <p>
+                            <i class="bi bi-person-video3"></i>
+                            <b>Direção:</b> Hayao Miyazaki
+                        </p>
+                        <p>
+                            <i class="bi bi-pencil-square"></i>
+                            <b>Roteiro:</b> Hayao Miyazaki
+                        </p>
+                        <p>
+                            <i class="bi bi-building"></i>
+                            <b>Produção:</b> Studio Ghibli
+                        </p>
+                        <p>
+                            <i class="bi bi-calendar"></i>
+                            <b>Lançamento:</b> 2001
+                        </p>
+                    </div>
+
+                    <div class="linha"></div>
+
+                    <div class="div_sinopse">
+                        <h2>SINOPSE</h2>
+                        <p>
+                            Chihiro chega a um mundo mágico dominado por uma
+                            bruxa. Aqueles que a desobedecem são transformados
+                            em animais. Para salvar seus pais, ela precisa
+                            enfrentar desafios e descobrir sua força.
+                        </p>
+                    </div>
+               
+
+                <div class="linha"></div>
+
+                <div class="trailer">
+                    <iframe 
+                        src="https://www.youtube.com/embed/ByXuk9QqQkk"
+                        frameborder="0"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    let coracaoCheio = false;
+    // Faz uma requisição pra pagina
+    fetch("navbar.html")
+        //Transforma esse negocio da resposta em HTML
+        .then((res) => res.text())
+
+        // ai quando ele chega ele insere no HTML
+        .then((data) => {
+            document.getElementById("navbar").innerHTML = data;
+        });
+
+    function mudarCoracao() {
+        if (coracaoCheio == false) {
+            coracao.innerHTML = `<i class="bi bi-heart-fill"></i>`;
+            coracaoCheio = true;
+        } else {
+            coracao.innerHTML = `<i class="bi bi-heart"></i>`;
+            coracaoCheio = false;
+        }
+    }
+</script>

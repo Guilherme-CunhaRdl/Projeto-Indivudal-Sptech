@@ -38,13 +38,13 @@
                     </select>
                 </div>
 
+                <a href="./filmeEspec.html">Ver detalhes</a>
+
                 <div class="div_btnFiltros">
                     <button class="btn_filtos">Filtros</button>
                 </div>
             </div>
-            <div class="container_Filmes">
-
-            </div>
+            <div class="container_Filmes"></div>
         </div>
     </body>
 </html>
@@ -60,25 +60,24 @@
             document.getElementById("navbar").innerHTML = data;
         });
 
+    fetch("/filmes/listar")
+        .then((res) => res.json())
+        .then((filmes) => {
+            const container = document.querySelector(".container_Filmes");
+            container.innerHTML = "";
 
-fetch("/filmes/listar")
-    .then(res => res.json())
-    .then(filmes => {
-        const container = document.querySelector(".container_Filmes");
-        container.innerHTML = "";
-
-        filmes.forEach(filme => {
-            container.innerHTML += `
+            filmes.forEach((filme) => {
+                container.innerHTML += `
                 <div class="card_filme">
                     <img src="./assets/imgFilmes/${filme.imgFilme}" alt="">
                     <div class="texto_sobre">
                         <h2>${filme.nomeFilme}</h2>
                         <p>${filme.dataLancamento} • ${filme.qtdMinutos} min</p>
                         <p>${filme.descFilme}</p>
-                        <button>Ver detalhes</button>
+                         <a href="./filmeEspec.html">Ver detalhes</a>
                     </div>
                 </div>
             `;
+            });
         });
-    });
 </script>
