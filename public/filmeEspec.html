@@ -35,10 +35,15 @@
                 <div class="div_botoes">
                     <button class="btn_principal" onclick="mudarCoracao()">
                         <div id="coracao"><i class="bi bi-heart"></i></div>
-                        Adicionar aos Favoritos
+                         Adicionar aos Favoritos
                     </button>
                     <button class="btn_secundario">
-                        <i class="bi bi-bookmark-plus"></i>Adicionar em Quero Assitir
+                        <i class="bi bi-bookmark-plus"></i> Adicionar em Quero
+                        Assitir
+                    </button>
+
+                    <button class="btn_terciario" onclick="abrirModal()">
+                        <i class="bi bi-star"></i> AVALIAR
                     </button>
                 </div>
             </div>
@@ -50,73 +55,73 @@
                     <img src="./assets/Viagem_de_Chihiro_capa.webp" alt="" />
                 </div>
 
-               
-                    <div class="info_extra">
-                        <p>
-                            <i class="bi bi-person-video3"></i>
-                            <b>Direção:</b> Hayao Miyazaki
-                        </p>
-                        <p>
-                            <i class="bi bi-pencil-square"></i>
-                            <b>Roteiro:</b> Hayao Miyazaki
-                        </p>
-                        <p>
-                            <i class="bi bi-building"></i>
-                            <b>Produção:</b> Studio Ghibli
-                        </p>
-                        <p>
-                            <i class="bi bi-calendar"></i>
-                            <b>Lançamento:</b> 2001
-                        </p>
-                    </div>
+                <div class="info_extra">
+                    <p>
+                        <i class="bi bi-person-video3"></i>
+                        <b>Direção:</b> Hayao Miyazaki
+                    </p>
+                    <p>
+                        <i class="bi bi-pencil-square"></i>
+                        <b>Roteiro:</b> Hayao Miyazaki
+                    </p>
+                    <p>
+                        <i class="bi bi-building"></i>
+                        <b>Produção:</b> Studio Ghibli
+                    </p>
+                    <p>
+                        <i class="bi bi-calendar"></i>
+                        <b>Lançamento:</b> 2001
+                    </p>
+                </div>
 
-                    <div class="linha"></div>
+                <div class="linha"></div>
 
-                    <div class="div_sinopse">
-                        <h2>SINOPSE</h2>
-                        <p>
-                            Chihiro chega a um mundo mágico dominado por uma
-                            bruxa. Aqueles que a desobedecem são transformados
-                            em animais. Para salvar seus pais, ela precisa
-                            enfrentar desafios e descobrir sua força.
-                        </p>
-                    </div>
-               
+                <div class="div_sinopse">
+                    <h2>SINOPSE</h2>
+                    <p>
+                        Chihiro chega a um mundo mágico dominado por uma bruxa.
+                        Aqueles que a desobedecem são transformados em animais.
+                        Para salvar seus pais, ela precisa enfrentar desafios e
+                        descobrir sua força.
+                    </p>
+                </div>
 
                 <div class="linha"></div>
 
                 <div class="trailer">
-                    <iframe 
+                    <iframe
                         src="https://www.youtube.com/embed/ByXuk9QqQkk"
                         frameborder="0"
-                        allowfullscreen>
+                        allowfullscreen
+                    >
                     </iframe>
                 </div>
+            </div>
+        </div>
 
+        <div class="div_modalNota" id="modalNota" >
+            <img src="./assets/TotoroAvaliar.png" alt="">
+            <div class="div_modal">
+                <h2>SUA AVALIAÇÃO</h2>
+                <h2>A Viagem de Chihiro</h2>
+                <p id="txt_avaliacao"></p>
+                <div class="div_btnAvaliar">
+                    <button class="btn-avaliar" onclick="nota(1)">1</button>
+                    <button class="btn-avaliar" onclick="nota(2)" >2</button>
+                    <button class="btn-avaliar" onclick="nota(3)">3</button>
+                    <button class="btn-avaliar" onclick="nota(4)">4</button>
+                    <button class="btn-avaliar" onclick="nota(5)">5</button>
+                    <button class="btn-avaliar" onclick="nota(6)">6</button>
+                    <button class="btn-avaliar" onclick="nota(7)">7</button>
+                    <button class="btn-avaliar" onclick="nota(8)">8</button>
+                    <button class="btn-avaliar" onclick="nota(9)">9</button>
+                    <button class="btn-avaliar" onclick="nota(10)">10</button>
+                </div>
+
+                <button class="btn_enviarAvaliar" onclick="fecharModal()">AVALIAR</button>
             </div>
         </div>
     </body>
 </html>
 
-<script>
-    let coracaoCheio = false;
-    // Faz uma requisição pra pagina
-    fetch("navbar.html")
-        //Transforma esse negocio da resposta em HTML
-        .then((res) => res.text())
-
-        // ai quando ele chega ele insere no HTML
-        .then((data) => {
-            document.getElementById("navbar").innerHTML = data;
-        });
-
-    function mudarCoracao() {
-        if (coracaoCheio == false) {
-            coracao.innerHTML = `<i class="bi bi-heart-fill"></i>`;
-            coracaoCheio = true;
-        } else {
-            coracao.innerHTML = `<i class="bi bi-heart"></i>`;
-            coracaoCheio = false;
-        }
-    }
-</script>
+<script src="./JS/filmeEspec.js"></script>

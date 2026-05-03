@@ -9,6 +9,7 @@
 body {
     background-color: #1a1a1a; 
     color: white;
+
 }
 
 
@@ -90,8 +91,8 @@ body {
 
 .div_botoes {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 10px;
+    
     margin-top: 10px;
 }
 
@@ -107,6 +108,26 @@ body {
     border-radius: 8px; 
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.btn_terciario{
+    display: flex;
+    align-items: center;
+    padding: 15px 15px;
+    gap: 10px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #e6c36a;
+    border: none;
+ 
+}
+
+.btn_terciario:hover{
+    background-color: #d4b45c;
 }
 
 .btn_principal {
@@ -224,6 +245,91 @@ body {
     height: 300px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+.div_modalNota{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: red;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+
+.div_modal{
+    background-color: #1a1a1a; 
+    width: 700px;
+    height: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 999;
+    align-items: center;
+}
+
+.div_btnAvaliar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center; 
+    align-items: center;
+    
+}
+
+.btn-avaliar{
+    height: 60px;
+    width: 60px;
+    background-color: transparent;
+    border: 3px solid #1e7faf;
+    border-radius: 8px;
+    color: white;
+    font-size: 28px;
+    transition: ease-in 0.2s;
+}
+
+.btn-avaliar:hover{
+    background-color: #1e7faf30;
+}
+
+.div_modalNota p{
+    font-size:20px ;
+}
+
+.div_modalNota img{
+    z-index: -1;
+    position: absolute;
+    width: 300px;
+    top: 0%;
+}
+
+.btn_enviarAvaliar{
+    width: 400px;
+    height: 40px;
+    background-color: #6faf8f;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: ease 0.2s;
+    cursor: pointer;
+}
+
+.btn_enviarAvaliar:hover{
+    background-color: #5c8972;
 }
 
 
