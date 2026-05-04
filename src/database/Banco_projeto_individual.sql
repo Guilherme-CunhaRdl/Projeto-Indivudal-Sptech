@@ -17,7 +17,24 @@ nomeFilme VARCHAR(100),
 descFilme VARCHAR(250),
 dataLancamento INT,
 qtdMinutos INT,
-imgFilme VARCHAR(255)
+imgFilme VARCHAR(255),
+bannerFilme VARCHAR(255),
+genero VARCHAR(100),
+diretor VARCHAR(100),
+roteirista VARCHAR(100)
+);
+
+CREATE TABLE genero (
+    idGenero INT PRIMARY KEY AUTO_INCREMENT,
+    nomeGenero VARCHAR(50)
+);
+
+CREATE TABLE filmeGenero (
+    fkFilme INT,
+    fkGenero INT,
+    PRIMARY KEY (fkFilme, fkGenero),
+    FOREIGN KEY (fkFilme) REFERENCES filme(idFilme),
+    FOREIGN KEY (fkGenero) REFERENCES genero(idGenero)
 );
 
 CREATE TABLE avaliacao(
@@ -90,15 +107,40 @@ CONSTRAINT chPkQuizRespondido PRIMARY KEY(idQuizRespondido,fkUsuario,fkQuiz)
 
 
 
-INSERT INTO filme (nomeFilme, descFilme, dataLancamento, qtdMinutos,imgFilme) VALUES
-('A Viagem de Chihiro', 'Uma garota entra em um mundo espiritual e precisa salvar seus pais.', 2001, 125,'Princesa_Mononoke.webp'),
-('Meu Amigo Totoro', 'Duas irmãs conhecem criaturas mágicas na floresta.', 1988, 86,'Princesa_Mononoke.webp'),
-('O Castelo Animado', 'Uma jovem é amaldiçoada e busca ajuda em um castelo mágico.', 2004, 119,'Princesa_Mononoke.webp'),
-('Princesa Mononoke', 'Um guerreiro se envolve em um conflito entre humanos e espíritos da floresta.', 1997, 134,'CasteloAnimado.webp'),
-('O Serviço de Entregas da Kiki', 'Uma jovem bruxa começa um serviço de entregas em uma cidade.', 1989, 103,'CasteloAnimado.webp'),
-('Ponyo', 'Um peixinho mágico deseja se tornar humano.', 2008, 101,'Viagem_de_Chihiro_capa.webp'),
-('O Conto da Princesa Kaguya', 'Uma menina misteriosa cresce rapidamente e revela sua origem.', 2013, 137,'Viagem_de_Chihiro_capa.webp'),
-('Vidas ao Vento', 'A história de um engenheiro apaixonado por aviação.', 2013, 126,'Viagem_de_Chihiro_capa.webp');
+
+INSERT INTO genero (nomeGenero) VALUES
+('Fantasia'),
+('Aventura'),
+('Drama'),
+('Romance'),
+('Animação');
+
+
+INSERT INTO filme 
+(nomeFilme, descFilme, dataLancamento, qtdMinutos, imgFilme, bannerFilme, diretor, roteirista)
+VALUES
+('A Viagem de Chihiro', 'Uma garota entra em um mundo espiritual e precisa salvar seus pais.', 2001, 125, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
+
+('Meu Amigo Totoro', 'Duas irmãs encontram espíritos da floresta no interior do Japão.', 1988, 86, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
+
+('O Castelo Animado', 'Uma jovem é amaldiçoada e busca ajuda de um mago misterioso.', 2004, 119, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
+
+('Princesa Mononoke', 'Um príncipe se envolve em um conflito entre humanos e espíritos.', 1997, 134, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
+
+('O Serviço de Entregas da Kiki', 'Uma jovem bruxa começa seu próprio serviço de entregas.', 1989, 103, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki');
+
+
+
+INSERT INTO filmeGenero VALUES
+(1, 1), (1, 2), (1, 3), 
+(2, 1), (2, 3), (2, 5), 
+(3, 1), (3, 2), (3, 4),
+(4, 1), (4, 2), (4, 3),
+(5, 1), (5, 2), (5, 5);
+
+
+
+
 
 
 

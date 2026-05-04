@@ -38,13 +38,14 @@
                     </select>
                 </div>
 
-                <a href="./filmeEspec.html">Ver detalhes</a>
+             
 
                 <div class="div_btnFiltros">
                     <button class="btn_filtos">Filtros</button>
                 </div>
             </div>
             <div class="container_Filmes"></div>
+            
         </div>
     </body>
 </html>
@@ -74,10 +75,17 @@
                         <h2>${filme.nomeFilme}</h2>
                         <p>${filme.dataLancamento} • ${filme.qtdMinutos} min</p>
                         <p>${filme.descFilme}</p>
-                         <a href="./filmeEspec.html">Ver detalhes</a>
+                       <a href="./filmeEspec.html" onclick="EscolherFilme(${filme.idFilme})">Ver detalhes</a>
                     </div>
                 </div>
             `;
             });
         });
+
+
+        function EscolherFilme(id){
+            sessionStorage.setItem("idFilme", id);
+            window.location.href = "filmeEspec.html";
+        }
+
 </script>

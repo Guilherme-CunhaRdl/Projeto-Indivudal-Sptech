@@ -7,4 +7,8 @@ router.get("/listar", function (req, res) {
     filmeController.listar(req, res);
 });
 
+router.get("/buscarFilme/:id", function (req, res) {
+    filmeController.buscarFilme(req, res);
+});
+
 module.exports = router;

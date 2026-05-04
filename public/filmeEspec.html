@@ -11,8 +11,9 @@
         <div id="navbar"></div>
 
         <div class="div_banner">
-            <img src="./assets/ChihiroBanner.jpg" alt="" class="img_banner" />
-
+            <div id="imgFilme">
+            
+            </div>
             <div class="overlay"></div>
 
             <div class="conteudo_banner">
@@ -21,13 +22,13 @@
                     filmes</a
                 >
                 <div class="div_infoFilme">
-                    <span class="ano">2001</span>
-                    <h1 class="titulo">Serviço de Entregas da Kiki</h1>
+                    <span class="ano" id="dataLancamentoFilme">2001</span>
+                    <h1 class="titulo" id="tituloFilme">Serviço de Entregas da Kiki</h1>
 
                     <div class="info">
-                        <span>2h 05min</span>
+                        <span id="qtdMinutosFilme">2h 05min</span>
                         <span>•</span>
-                        <span>Aventura, Fantasia</span>
+                        <span id="generoFilme">Aventura, Fantasia</span>
                         <span>•</span>
                         <span>Livre</span>
                     </div>
@@ -51,18 +52,18 @@
 
         <div class="container_detalhes">
             <div class="div_conteudoFilme">
-                <div class="div_poster">
-                    <img src="./assets/Viagem_de_Chihiro_capa.webp" alt="" />
+                <div class="div_poster" id="imgPoster">
+                   
                 </div>
 
                 <div class="info_extra">
                     <p>
                         <i class="bi bi-person-video3"></i>
-                        <b>Direção:</b> Hayao Miyazaki
+                        <b>Direção:</b> <span id="nomeDiretor"></span>
                     </p>
                     <p>
                         <i class="bi bi-pencil-square"></i>
-                        <b>Roteiro:</b> Hayao Miyazaki
+                        <b>Roteiro:</b> <span id="nomeRoteirista"></span> 
                     </p>
                     <p>
                         <i class="bi bi-building"></i>
@@ -78,7 +79,7 @@
 
                 <div class="div_sinopse">
                     <h2>SINOPSE</h2>
-                    <p>
+                    <p id="descFilme">
                         Chihiro chega a um mundo mágico dominado por uma bruxa.
                         Aqueles que a desobedecem são transformados em animais.
                         Para salvar seus pais, ela precisa enfrentar desafios e
@@ -103,7 +104,7 @@
             <img src="./assets/TotoroAvaliar.png" alt="">
             <div class="div_modal">
                 <h2>SUA AVALIAÇÃO</h2>
-                <h2>A Viagem de Chihiro</h2>
+                <h2 id="modalTitulo">A Viagem de Chihiro</h2>
                 <p id="txt_avaliacao"></p>
                 <div class="div_btnAvaliar">
                     <button class="btn-avaliar" onclick="nota(1)">1</button>
