@@ -6,7 +6,7 @@ CREATE TABLE usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nomeUsuario VARCHAR(20),
 email VARCHAR(150),
-senha VARCHAR(20),
+senha VARCHAR(255),
 imgUsuario VARCHAR(200),
 bannerUsuario VARCHAR(200)
 );
@@ -15,11 +15,10 @@ CREATE TABLE filme(
 idFilme INT PRIMARY KEY AUTO_INCREMENT,
 nomeFilme VARCHAR(100),
 descFilme VARCHAR(250),
-dataLancamento INT,
+dataLancamento DATE,
 qtdMinutos INT,
 imgFilme VARCHAR(255),
 bannerFilme VARCHAR(255),
-genero VARCHAR(100),
 diretor VARCHAR(100),
 roteirista VARCHAR(100)
 );
@@ -37,34 +36,31 @@ CREATE TABLE filmeGenero (
     FOREIGN KEY (fkGenero) REFERENCES genero(idGenero)
 );
 
-CREATE TABLE avaliacao(
-idAvaliacao INT AUTO_INCREMENT,
-notaAvaliacao INT,
-CONSTRAINT chNota CHECK(notaAvaliacao >= 0 AND notaAvaliacao <=10),
-descAvaliacao VARCHAR(300),
-fkUsuario INT,
-CONSTRAINT chFkUsuario FOREIGN KEY(fkUsuario) REFERENCES usuario(idUsuario),
-fkFilme INT,
-CONSTRAINT chFkFilme FOREIGN KEY(fkFilme) REFERENCES filme(idFilme),
-CONSTRAINT chPkAvaliacao PRIMARY KEY(idAvaliacao,fkUsuario,fkFilme)
+CREATE TABLE avaliacao (
+    idAvaliacao INT PRIMARY KEY AUTO_INCREMENT,
+    notaAvaliacao INT,
+    descAvaliacao VARCHAR(300),
+    fkUsuario INT,
+    fkFilme INT,
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkFilme) REFERENCES filme(idFilme),
+    CONSTRAINT chk_nota CHECK (notaAvaliacao BETWEEN 0 AND 10)
 );
 
-CREATE TABLE QueroAssitir(
-idQueroAssitir INT AUTO_INCREMENT,
-fkUsuario INT,
-CONSTRAINT chFkUsuarioQueroAssitir FOREIGN KEY(fkUsuario) REFERENCES usuario(idUsuario),
-fkFilme INT,
-CONSTRAINT chFkFilmeQueroAssitir FOREIGN KEY(fkFilme) REFERENCES filme(idFilme),
-CONSTRAINT chPkQueroAssitir PRIMARY KEY(idQueroAssitir,fkUsuario,fkFilme)
+CREATE TABLE queroAssistir (
+    fkUsuario INT,
+    fkFilme INT,
+    PRIMARY KEY (fkUsuario, fkFilme),
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkFilme) REFERENCES filme(idFilme)
 );
 
-CREATE TABLE curtida(
-idCurtida INT AUTO_INCREMENT,
-fkUsuarioCurtiu INT,
-CONSTRAINT chFkUsuarioCurtida FOREIGN KEY(fkUsuarioCurtiu) REFERENCES usuario(idUsuario),
-fkAvaliacao INT,
-CONSTRAINT chFkAvaliacaoCurtida FOREIGN KEY(fkAvaliacao) REFERENCES avaliacao(idAvaliacao),
-CONSTRAINT chPkCurtida PRIMARY KEY(idCurtida,fkUsuarioCurtiu,fkAvaliacao)
+CREATE TABLE curtida (
+    fkUsuario INT,
+    fkAvaliacao INT,
+    PRIMARY KEY (fkUsuario, fkAvaliacao),
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkAvaliacao) REFERENCES avaliacao(idAvaliacao)
 );
 
 
@@ -76,75 +72,31 @@ CONSTRAINT chFkFilmeQuiz FOREIGN KEY(fkFilme) REFERENCES filme(idFilme)
 );
 
 CREATE TABLE PerguntaQuiz(
-idPergunta INT AUTO_INCREMENT,
+idPergunta INT PRIMARY KEY AUTO_INCREMENT,
 tituloPergunta VARCHAR(150),
 fkQuiz INT,
-CONSTRAINT chfkQuiz FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz),
-CONSTRAINT chPkQuiz PRIMARY KEY(idPergunta,fkQuiz)
+FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
 );
 
 CREATE TABLE RespostaPergunta(
-idRespostaPergunta INT AUTO_INCREMENT,
+idRespostaPergunta INT PRIMARY KEY AUTO_INCREMENT,
 descResposta VARCHAR(150),
-RespostaVerdadeira BOOLEAN,
+respostaVerdadeira BOOLEAN,
 fkPerguntaQuiz INT,
-CONSTRAINT chFkPerguntaQuiz  FOREIGN KEY(fkPerguntaQuiz) REFERENCES PerguntaQuiz(idPergunta),
-CONSTRAINT chPkPerguntaQuiz PRIMARY KEY(idRespostaPergunta,fkPerguntaQuiz)
+FOREIGN KEY(fkPerguntaQuiz) REFERENCES PerguntaQuiz(idPergunta)
 );
 
 
 
 CREATE TABLE QuizRespondido(
-idQuizRespondido INT AUTO_INCREMENT,
+idQuizRespondido INT PRIMARY KEY AUTO_INCREMENT,
 quizRespondido BOOLEAN,
 fkUsuario INT,
-CONSTRAINT chFkUsuarioQuizResp FOREIGN KEY(fkUsuario) REFERENCES usuario(idUsuario),
 fkQuiz INT,
-CONSTRAINT chfkQuizResp FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz),
-CONSTRAINT chPkQuizRespondido PRIMARY KEY(idQuizRespondido,fkUsuario,fkQuiz)
+pontuacao INT DEFAULT 0,
+dataResposta DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY(fkUsuario) REFERENCES usuario(idUsuario),
+FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
 );
-
-
-
-
-
-INSERT INTO genero (nomeGenero) VALUES
-('Fantasia'),
-('Aventura'),
-('Drama'),
-('Romance'),
-('Animação');
-
-
-INSERT INTO filme 
-(nomeFilme, descFilme, dataLancamento, qtdMinutos, imgFilme, bannerFilme, diretor, roteirista)
-VALUES
-('A Viagem de Chihiro', 'Uma garota entra em um mundo espiritual e precisa salvar seus pais.', 2001, 125, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
-
-('Meu Amigo Totoro', 'Duas irmãs encontram espíritos da floresta no interior do Japão.', 1988, 86, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
-
-('O Castelo Animado', 'Uma jovem é amaldiçoada e busca ajuda de um mago misterioso.', 2004, 119, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
-
-('Princesa Mononoke', 'Um príncipe se envolve em um conflito entre humanos e espíritos.', 1997, 134, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki'),
-
-('O Serviço de Entregas da Kiki', 'Uma jovem bruxa começa seu próprio serviço de entregas.', 1989, 103, 'Princesa_Mononoke.webp', 'ChihiroBanner.jpg', 'Hayao Miyazaki', 'Hayao Miyazaki');
-
-
-
-INSERT INTO filmeGenero VALUES
-(1, 1), (1, 2), (1, 3), 
-(2, 1), (2, 3), (2, 5), 
-(3, 1), (3, 2), (3, 4),
-(4, 1), (4, 2), (4, 3),
-(5, 1), (5, 2), (5, 5);
-
-
-
-
-
-
-
-
-
 
 
