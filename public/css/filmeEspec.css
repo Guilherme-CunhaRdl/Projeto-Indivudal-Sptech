@@ -314,7 +314,7 @@ body {
     z-index: -1;
     position: absolute;
     width: 300px;
-    top: 0%;
+    top: 10%;
 }
 
 .btn_enviarAvaliar{

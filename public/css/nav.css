@@ -44,9 +44,14 @@
     font-size: 18px;
 }
 
+.link{
+
+    color: white
+}
+
 .div_loginUsuario{
     position: relative;
-   
+    z-index: 999;
 }
 
 .div_perfilUsuario{

@@ -59,7 +59,7 @@ function nota(notaNum) {
 function carregarFilme() {
     const idFilme = sessionStorage.getItem("idFilme");
 
-    fetch(`http://localhost:3333/filmes/buscarFilme/${idFilme}`)
+    fetch(`/filmes/buscarFilme/${idFilme}`)
     .then((res) => res.json())
     .then((filme) => {
 
@@ -70,12 +70,12 @@ function carregarFilme() {
         tituloFilme.innerHTML = dados.nomeFilme;
         dataLancamentoFilme.innerHTML = dados.dataLancamento;
         qtdMinutosFilme.innerHTML = dados.qtdMinutos;
-        imgFilme.innerHTML = `<img src="./assets/${dados.bannerFilme}" class="img_banner" />`;
+        imgFilme.innerHTML = `<img src="./assets/ChihiroBanner.jpg" class="img_banner" />`;
         descFilme.innerHTML = dados.descFilme;
         modalTitulo.innerHTML = dados.nomeFilme;
         nomeDiretor.innerHTML = dados.diretor;
         nomeRoteirista.innerHTML = dados.roteirista;
-        imgPoster.innerHTML = `<img src="./assets/${dados.imgFilme}" />`;
+        imgPoster.innerHTML = `<img src="./assets/Viagem_de_Chihiro_capa.webp" />`;
 
 
         // ai aqui eu rodo todos os JSON pegando o generos e coloco em uma lista
