@@ -28,9 +28,20 @@
                 <h1 class="titulo">- CADASTRO -</h1>
 
                 <div class="inputBox foto">
-                    <label for="iptFoto" class="custom-file"
-                        ><input type="file" id="iptFoto"
-                    /></label>
+                    <label for="iptFoto" >
+                        <input
+                            type="file"
+                            id="iptFoto"
+                            accept="image/*"
+                            onchange="previewImagem()"
+                        />
+                    </label>
+
+                    <img
+                        id="preview"
+                        src="./assets/default-user.png"
+                        class="previewImagem"
+                    />
                 </div>
 
                 <div class="inputBox">
@@ -98,7 +109,3 @@
     </body>
     <script src="./JS/validarCadastro.js"></script>
 </html>
-
-
-
-

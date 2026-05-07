@@ -4,4 +4,6 @@ package-lock.json
 .env
 .env.dev
 .github
+/public/assets/imgUsuarios/*
+!/public/assets/imgUsuarios/.gitkeep
 

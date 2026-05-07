@@ -17,19 +17,19 @@ function cadastrar() {
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
+    var fotoVar = iptFoto.files[0];
+
+    let formData = new FormData();
+
+    formData.append("nomeServer", nomeVar);
+    formData.append("emailServer", emailVar);
+    formData.append("senhaServer", senhaVar);
+    formData.append("foto", fotoVar);
+
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            nomeServer: nomeVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar,
-        }),
+        body: formData
     })
         .then(function (resposta) {
             console.log("resposta: ", resposta);
@@ -40,9 +40,11 @@ function cadastrar() {
                 mensagem_erro.innerHTML =
                     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000");
+                   
+                    setTimeout(function () {
+                        window.location = "./index.html";
+                    }, 1000); 
+                
 
                 limparFormulario();
                 finalizarAguardar();
@@ -286,4 +288,16 @@ function validarSenha() {
     }
 
 
+}
+
+function previewImagem() {
+
+    var arquivo = iptFoto.files[0];
+
+    if (arquivo) {
+
+        var novaImagem = URL.createObjectURL(arquivo);
+
+        preview.src = novaImagem;
+    }
 }

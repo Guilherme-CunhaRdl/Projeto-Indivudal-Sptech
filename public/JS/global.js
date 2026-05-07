@@ -14,7 +14,7 @@ fetch("navbar.html")
         if (sessionStorage.ID_USUARIO) {
             loginUsuario.innerHTML = `            
             <button class="div_perfilUsuario Ativo" onclick="mudarPerfil()">
-                    <img src="./assets/HakuIcon.webp" alt=""> 
+                    <img src="./assets/imgUsuarios/${sessionStorage.IMG_USUARIO}" alt=""> 
                     <p>${sessionStorage.NOME_USUARIO}</p><i class="bi bi-list"></i>
                     </button>
         
