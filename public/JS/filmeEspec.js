@@ -66,16 +66,22 @@ function carregarFilme() {
 
         // como no select ta vindo varios JSON por conta do genero eu pego so o 1(que no caso tem o indice 0) pros dados base 
         const dados = filme[0];
+       
+
+        // Aqui eu so to transoformando a data pro padrão do brasil e tirando a adicção de tempo que o node faz sozinho
+        let data = new Date(dados.dataLancamento);
+        let dataBR = data.toLocaleDateString("pt-BR");
+        dataLancamentoFilme.innerHTML = dataBR;
 
         tituloFilme.innerHTML = dados.nomeFilme;
-        dataLancamentoFilme.innerHTML = dados.dataLancamento;
+        
         qtdMinutosFilme.innerHTML = dados.qtdMinutos;
-        imgFilme.innerHTML = `<img src="./assets/ChihiroBanner.jpg" class="img_banner" />`;
+        imgFilme.innerHTML = `<img src="./assets/imgFilmes/${dados.bannerFilme}" class="img_banner" />`;
         descFilme.innerHTML = dados.descFilme;
         modalTitulo.innerHTML = dados.nomeFilme;
         nomeDiretor.innerHTML = dados.diretor;
         nomeRoteirista.innerHTML = dados.roteirista;
-        imgPoster.innerHTML = `<img src="./assets/Viagem_de_Chihiro_capa.webp" />`;
+        imgPoster.innerHTML = `<img src="./assets/imgFilmes/${dados.imgFilme}" />`;
 
 
         // ai aqui eu rodo todos os JSON pegando o generos e coloco em uma lista

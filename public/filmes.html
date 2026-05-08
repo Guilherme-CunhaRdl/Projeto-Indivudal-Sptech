@@ -68,12 +68,15 @@
             container.innerHTML = "";
 
             filmes.forEach((filme) => {
+                let data = new Date(filme.dataLancamento);
+                let dataBR = data.toLocaleDateString("pt-BR");
+          
                 container.innerHTML += `
                 <div class="card_filme">
-                    <img src="./assets/imgFilmes/CasteloAnimado.webp" alt="">
+                    <img src="./assets/imgFilmes/${filme.imgFilme}" alt="">
                     <div class="texto_sobre">
                         <h2>${filme.nomeFilme}</h2>
-                        <p>${filme.dataLancamento} • ${filme.qtdMinutos} min</p>
+                        <p>${dataBR} • ${filme.qtdMinutos} min</p>
                         <p>${filme.descFilme}</p>
                        <a href="./filmeEspec.html" onclick="EscolherFilme(${filme.idFilme})">Ver detalhes</a>
                     </div>
