@@ -8,7 +8,8 @@ nomeUsuario VARCHAR(20),
 email VARCHAR(150),
 senha VARCHAR(255),
 imgUsuario VARCHAR(200),
-bannerUsuario VARCHAR(200)
+bannerUsuario VARCHAR(200),
+dtCadastro
 );
 
 CREATE TABLE filme(

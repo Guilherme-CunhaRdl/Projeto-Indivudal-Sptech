@@ -13,14 +13,14 @@ fetch("navbar.html")
 
         if (sessionStorage.ID_USUARIO) {
             loginUsuario.innerHTML = `            
-            <button class="div_perfilUsuario Ativo" onclick="mudarPerfil()">
+            <button class="div_perfilUsuario" id="btnPerfil" onclick="mudarPerfil()">
                     <img src="./assets/imgUsuarios/${sessionStorage.IMG_USUARIO}" alt=""> 
                     <p>${sessionStorage.NOME_USUARIO}</p><i class="bi bi-list"></i>
                     </button>
         
                     <div class="div_menuAberto" id="menuAberto">
                         
-                        <a href="">Perfil <i class="bi bi-person"></i></a>
+                        <a href="./perfil.html">Perfil <i class="bi bi-person"></i></a>
                         <hr>
                         <a href="">Configurações <i class="bi bi-gear"></i></a>
                         <hr>
@@ -40,13 +40,16 @@ let menuAberto = false;
 
 function mudarPerfil() {
     let menu = document.getElementById("menuAberto");
+    let perfil = document.getElementById("btnPerfil");
     if (menuAberto == false) {
         console.log("False");
         menu.style.display = "flex";
+        perfil.classList.add('Ativo')
         menuAberto = true;
     } else {
         console.log("True");
-        menu.style.display = "none";
+        menu.style.display = "none";~
+        perfil.classList.remove('Ativo')
         menuAberto = false;
     }
 

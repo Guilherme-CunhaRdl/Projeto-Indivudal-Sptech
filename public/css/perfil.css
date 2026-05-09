@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "ITC Avant Garde Gothic", sans-serif;
+}
+
+body {
+    background-color: #222222;
+}
+
+.div_contaniner {
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.div_banner {
+    display: flex;
+    align-items: center;
+    height: 350px;
+}
+
+.div_btnEditar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    width: 20%;
+    height: 100%;
+}
+
+.btnTemas {
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 100%;
+    border: 1px solid white;
+    background-color: #131515;
+    cursor: pointer;
+}
+
+.btnTemas i {
+    color: white;
+    font-size: 20px;
+}
+
+.btnEditarPerfil {
+    display: flex;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    padding: 10px 25px;
+    background-color: #131515;
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
+    gap: 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.div_infoUsuario {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    height: 100%;
+    margin-left: 40px;
+}
+
+.ImgBanner {
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    z-index: -1;
+}
+
+.imgPerfil {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+
+.div_dados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.div_email {
+    background-color: #131515a8;
+    padding: 10px;
+    width: 200px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.div_dadosUsuario {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 10px;
+    margin-top: 20px;
+    height: 40vh;
+    gap: 20px;
+}
+
+.div_estaticas {
+    background-color: #0e0f0f;
+    width: 35%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.div_caixa {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    gap: 10px;
+}
+
+.div_caixaEstatica {
+    display: flex;
+    flex-direction: column;
+    border: 2px white solid;
+    padding: 10px;
+    text-align: start;
+    border-radius: 8px;
+    gap: 2px;
+}
+
+.queroLink{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.div_caixaEstatica i {
+    font-size: 40px;
+}
+
+.div_filmeAvaliados {
+    width: 70%;
+    height: 100%;
+    background-color: #0e0f0f;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.div_filmes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 85%;
+    padding: 10px;
+}
+
+.div_txtFilmesAvailiados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    height: 15%;
+}
+
+.div_txtFilmesAvailiados a{
+    color: white;
+}
+
+.div_cardFilme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.div_cardFilme img {
+    width: 130px;
+    border-radius: 10px;
+}
+
