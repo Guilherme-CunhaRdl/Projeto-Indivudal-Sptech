@@ -35,19 +35,17 @@ function cadastrar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
+               
 
-                mensagem_erro.innerHTML =
-                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                alert('Cadastro realizado com sucesso! Redirecionando para tela de Login...')
 
                    
                     setTimeout(function () {
-                        window.location = "./index.html";
+                        window.location = "./login.html";
                     }, 1000); 
                 
 
-                limparFormulario();
-                finalizarAguardar();
+
             } else {
                 throw "Houve um erro ao tentar realizar o cadastro!";
             }
