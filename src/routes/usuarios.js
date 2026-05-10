@@ -13,4 +13,23 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/favoritar", function (req, res) {
+    usuarioController.favoritar(req, res);
+});
+
+router.post("/queroAssistir", function (req, res) {
+    usuarioController.queroAssistir(req, res);
+});
+
+router.post("/removerFavoritar", function (req, res) {
+    usuarioController.RemoverFavoritar(req, res);
+});
+
+router.post("/removerQueroAssistir", function (req, res) {
+    usuarioController.RemoverQueroAssistir(req, res);
+});
+
+
+
+
 module.exports = router;

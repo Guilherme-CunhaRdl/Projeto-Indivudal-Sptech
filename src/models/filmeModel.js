@@ -20,7 +20,28 @@ function buscarFilme(idFilme) {
     return database.executar(instrucaoSql);
 }
 
+
+function verificarFavorito(idFilme,idUsuario){
+    var instrucaoSql = `
+    SELECT * FROM favorito WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}';
+`;
+
+    return database.executar(instrucaoSql);
+
+}
+
+function verificarAddLista(idFilme,idUsuario){
+    var instrucaoSql = `
+    SELECT * FROM queroAssistir WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}';
+`;
+
+    return database.executar(instrucaoSql);
+
+}
+
 module.exports = {
     listar,
     buscarFilme,
+    verificarFavorito,
+    verificarAddLista,
 };

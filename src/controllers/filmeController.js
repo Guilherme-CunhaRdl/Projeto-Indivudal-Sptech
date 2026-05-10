@@ -24,9 +24,49 @@ function buscarFilme(req, res) {
         });
 }
 
+function verificarFavorito(req, res) {
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    filmeModel.verificarFavorito(idFilme,idUsuario)
+        .then(resultado => {
+            if(resultado.length > 0){
+                res.json({ favoritado: true }) 
+            }else{
+                res.json({ favoritado: false })
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function verificarAddLista(req, res) {
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    filmeModel.verificarAddLista(idFilme,idUsuario)
+        .then(resultado => {
+            if(resultado.length > 0){
+                res.json({ adicionado: true }) 
+            }else{
+                res.json({ adicionado: false })
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
+
 
 
 module.exports = {
     listar,
-    buscarFilme
+    buscarFilme,
+    verificarFavorito,
+    verificarAddLista,
 };

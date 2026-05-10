@@ -1,7 +1,11 @@
-var database = require("../database/config")
+var database = require("../database/config");
 
 function autenticar(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
+    console.log(
+        "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ",
+        email,
+        senha
+    );
     var instrucaoSql = `
         SELECT idUsuario, nomeUsuario, email,imgUsuario FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
@@ -9,10 +13,14 @@ function autenticar(email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function cadastrar(nome, email, senha, imgUsuario) {
+    console.log(
+        "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
+        nome,
+        email,
+        senha
+    );
 
-function cadastrar(nome, email, senha,imgUsuario) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-    
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
@@ -22,7 +30,43 @@ function cadastrar(nome, email, senha,imgUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function favoritar(idUsuario, idFilme) {
+    const instrucaoSql = `
+        INSERT INTO favorito (fkUsuario, fkFilme)
+        VALUES (${idUsuario}, ${idFilme});
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function queroAssistir(idUsuario, idFilme) {
+    const instrucaoSql = `
+    INSERT INTO queroAssistir (fkUsuario,fkFilme) VALUES (${idUsuario},${idFilme});
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function RemoverFavoritar(idUsuario, idFilme) {
+    const instrucaoSql = `
+    DELETE FROM favorito WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}';
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function RemoverQueroAssistir(idUsuario, idFilme) {
+    const instrucaoSql = `
+    DELETE FROM queroAssistir WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}';
+    `;
+
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    favoritar,
+    queroAssistir,
+    RemoverQueroAssistir,
+    RemoverFavoritar,
 };

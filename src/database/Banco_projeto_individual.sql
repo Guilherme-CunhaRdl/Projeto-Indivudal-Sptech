@@ -48,6 +48,14 @@ CREATE TABLE avaliacao (
     CONSTRAINT chk_nota CHECK (notaAvaliacao BETWEEN 0 AND 10)
 );
 
+CREATE TABLE favorito (
+    fkUsuario INT,
+    fkFilme INT,
+    PRIMARY KEY (fkUsuario, fkFilme),
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkFilme) REFERENCES filme(idFilme)
+);
+
 CREATE TABLE queroAssistir (
     fkUsuario INT,
     fkFilme INT,

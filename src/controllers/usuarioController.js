@@ -76,7 +76,78 @@ function cadastrar(req, res) {
     }
 }
 
+
+function favoritar(req, res) {
+
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    usuarioModel.favoritar(idUsuario, idFilme)
+        .then(function (resultado) {
+            res.status(200).send("Favoritado com sucesso");
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+
+}
+
+function queroAssistir(req,res){
+
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    usuarioModel.queroAssistir(idUsuario,idFilme)
+        .then(function (resultado){
+            res.status(200).send("Adicionado a lista com sucesso")
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+    
+
+}
+
+function RemoverFavoritar(req, res) {
+
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    usuarioModel.RemoverFavoritar(idUsuario, idFilme)
+        .then(function (resultado) {
+            res.status(200).send("Removido Favoritado com sucesso");
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+
+}
+
+function RemoverQueroAssistir(req,res){
+
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    usuarioModel.RemoverQueroAssistir(idUsuario,idFilme)
+        .then(function (resultado){
+            res.status(200).send("Removido da lista com sucesso")
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+    
+
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    favoritar,
+    queroAssistir,
+    RemoverQueroAssistir,
+    RemoverFavoritar
 }
