@@ -32,6 +32,7 @@ function entrar() {
                     sessionStorage.NOME_USUARIO = json.nomeUsuario;
                     sessionStorage.IMG_USUARIO = json.imgUsuario;
                     sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.LOG_USUARIO = true
 
                     setTimeout(function () {
                         window.location = "./index.html";

@@ -61,6 +61,38 @@ function verificarAddLista(req, res) {
 }
 
 
+function enviarAvaliacao(req,res){
+
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+    let avalaicaoFilme = req.body.avalaicaoServer;
+    let notaFilme = req.body.notaSelecionadaServer;
+
+    filmeModel.enviarAvaliacao(idFilme,idUsuario,avalaicaoFilme,notaFilme)
+        .then(function (resultado){
+            res.status(200).send("Enviado avaliação com sucesso")
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
+
+function verificarAvaliacao(req, res) {
+    let idUsuario = req.body.idUsuarioServer;
+    let idFilme = req.body.idFilmeServer;
+
+    filmeModel.verificarAvaliacao(idFilme,idUsuario)
+        .then(resultado => {
+            res.json()
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 
 
@@ -69,4 +101,6 @@ module.exports = {
     buscarFilme,
     verificarFavorito,
     verificarAddLista,
+    enviarAvaliacao,
+    verificarAvaliacao,
 };

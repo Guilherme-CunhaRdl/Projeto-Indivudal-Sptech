@@ -333,4 +333,23 @@ body {
 }
 
 
+#modalpt1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+#modalpt2{
+    display: none;
+}
+
+.ipt_avaliacao{
+    width: 500px;
+    height: 250px;
+    border-radius: 8px;
+    font-size: 17px;
+    border: 2px solid white;
+    background-color: #111;
+    color: white;
+}

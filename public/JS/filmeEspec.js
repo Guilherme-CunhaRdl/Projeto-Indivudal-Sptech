@@ -1,5 +1,7 @@
 let coracaoCheio = false;
-let queroAssistirAdicionado  = false;
+let queroAssistirAdicionado = false;
+let notaSelecionada = 0;
+let usuarioLogado = false;
 
 // Faz uma requisição pra pagina
 fetch("navbar.html")
@@ -12,6 +14,11 @@ fetch("navbar.html")
     });
 
 function mudarCoracao() {
+    if (usuarioLogado == false) {
+        alert("Faça Login para liberar");
+        return;
+    }
+
     let idFilme = sessionStorage.getItem("idFilme");
     let idUsuario = sessionStorage.ID_USUARIO;
 
@@ -39,7 +46,6 @@ function mudarCoracao() {
                 console.log(erro);
             });
     } else {
-
         fetch("/usuarios/removerFavoritar", {
             method: "POST",
             headers: {
@@ -62,18 +68,21 @@ function mudarCoracao() {
             .catch(function (erro) {
                 console.log(erro);
             });
-
     }
 }
 
 function addQueroAssistir() {
+    if (usuarioLogado == false) {
+        alert("Faça Login para liberar");
+        return;
+    }
+
     let idFilme = sessionStorage.getItem("idFilme");
     let idUsuario = sessionStorage.ID_USUARIO;
-    console.log(queroAssistirAdicionado)
+    console.log(queroAssistirAdicionado);
 
     if (queroAssistirAdicionado == false) {
-        console.log('Estou no IF')
-
+        console.log("Estou no IF");
 
         fetch("/usuarios/queroAssistir", {
             method: "POST",
@@ -89,7 +98,7 @@ function addQueroAssistir() {
                 if (resposta.ok) {
                     queroAssistir.innerHTML = `<i class="bi bi-bookmark-check"></i>`;
                     txt_queroAssistir.innerHTML = `Adicionado em Quero Assistir`;
-                    queroAssistirAdicionado  = true;
+                    queroAssistirAdicionado = true;
                 } else {
                     console.log("Erro ao adicionar a lista");
                 }
@@ -98,7 +107,7 @@ function addQueroAssistir() {
                 console.log(erro);
             });
     } else {
-        console.log('Estou no ELSE')
+        console.log("Estou no ELSE");
 
         fetch("/usuarios/removerQueroAssistir", {
             method: "POST",
@@ -113,8 +122,8 @@ function addQueroAssistir() {
             .then(function (resposta) {
                 if (resposta.ok) {
                     queroAssistir.innerHTML = `<i class="bi bi-bookmark-plus"></i>`;
-                    txt_queroAssistir.innerHTML=`Adicionar em Quero Assistir`;
-                    queroAssistirAdicionado  = false;
+                    txt_queroAssistir.innerHTML = `Adicionar em Quero Assistir`;
+                    queroAssistirAdicionado = false;
                 } else {
                     console.log("Erro ao Remover da lista");
                 }
@@ -122,42 +131,95 @@ function addQueroAssistir() {
             .catch(function (erro) {
                 console.log(erro);
             });
-
     }
 }
 
 function abrirModal() {
+    if (usuarioLogado == false) {
+        alert("Faça Login para liberar");
+        return;
+    }
     document.getElementById("modalNota").style.display = "flex";
     document.body.style.overflow = "hidden";
+    document.getElementById("modalpt1").style.display = "flex";
+    document.getElementById("modalpt2").style.display = "none";
+}
+
+function chamarpt2() {
+    document.getElementById("modalpt1").style.display = "none";
+    modalTitulo.innerHTML = "Escreva um pouco sobre o que achou ";
+    document.getElementById("modalpt2").style.display = "flex";
+    document.getElementById("btnModal").onclick = fecharModal;
 }
 
 function fecharModal() {
+    let avalaicao = ipt_avaliacao.value;
+
+    enviarAvaliacao(avalaicao);
+
     document.getElementById("modalNota").style.display = "none";
+    document.getElementById("btnModal").onclick = chamarpt2;
     document.body.style.overflow = "auto";
+    document.getElementById("modalpt1").style.display = "flex";
+    document.getElementById("modalpt2").style.display = "none";
 }
 
 function nota(notaNum) {
-    if (notaNum == 1) {
+    notaSelecionada = notaNum;
+
+    if (notaSelecionada == 1) {
         txt_avaliacao.innerHTML = `😭 Péssimo.`;
-    } else if (notaNum == 2) {
+    } else if (notaSelecionada == 2) {
         txt_avaliacao.innerHTML = `😞 Ruim.`;
-    } else if (notaNum == 3) {
+    } else if (notaSelecionada == 3) {
         txt_avaliacao.innerHTML = `🤨 Sem graça.`;
-    } else if (notaNum == 4) {
+    } else if (notaSelecionada == 4) {
         txt_avaliacao.innerHTML = `😔 Fraco.`;
-    } else if (notaNum == 5) {
+    } else if (notaSelecionada == 5) {
         txt_avaliacao.innerHTML = `🙂 Ok.`;
-    } else if (notaNum == 6) {
+    } else if (notaSelecionada == 6) {
         txt_avaliacao.innerHTML = `😊 Bom, mas poderia ser melhor.`;
-    } else if (notaNum == 7) {
+    } else if (notaSelecionada == 7) {
         txt_avaliacao.innerHTML = `😆 Otimo Filme.`;
-    } else if (notaNum == 8) {
+    } else if (notaSelecionada == 8) {
         txt_avaliacao.innerHTML = `😎 Muito Bom.`;
-    } else if (notaNum == 9) {
+    } else if (notaSelecionada == 9) {
         txt_avaliacao.innerHTML = `😀 Uma obra prima.`;
-    } else if (notaNum == 10) {
+    } else if (notaSelecionada == 10) {
         txt_avaliacao.innerHTML = `🍿🎥 Simplesmente Studio Ghibli.`;
     }
+}
+
+function enviarAvaliacao(avalaicao) {
+    const idFilme = sessionStorage.getItem("idFilme");
+    let idUsuario = sessionStorage.ID_USUARIO;
+
+    if (notaSelecionada == 0) {
+        alert("Por favor selecione uma nota valida");
+    }
+
+    fetch(`/filmes/enviarAvaliacao`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idFilmeServer: idFilme,
+            idUsuarioServer: idUsuario,
+            notaSelecionadaServer: notaSelecionada,
+            avalaicaoServer: avalaicao,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                alert("Avaliação Enviada com sucesso, muito obrigado");
+            } else {
+                console.log("Erro ao enviar a avaliação");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
 }
 
 function carregarFilme() {
@@ -195,6 +257,11 @@ function carregarFilme() {
             // Esse .Join serve pra transformar uma lista em 1 linha so esse " • " e o que vai ficar no meio
             generoFilme.innerHTML = generos.join(" • ");
         });
+
+    let idUsuario = sessionStorage.ID_USUARIO;
+    if (idUsuario) {
+        usuarioLogado = true;
+    }
 }
 
 function verificarUsuario() {
@@ -247,6 +314,22 @@ function verificarUsuario() {
                 txt_queroAssistir.innerHTML = `Adicionar em Quero Assistir`;
                 queroAssistirAdicionado = false;
             }
+        });
+
+    fetch("/filmes/verificarAvaliacao", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idFilmeServer: idFilme,
+            idUsuarioServer: idUsuario,
+        }),
+    })
+        .then((resposta) => resposta.json())
+        .then((dados) => {
+            ipt_avaliacao.innerHTML = dados.descAvaliacao;
+            nota(dados.notaAvaliacao)
         });
 }
 

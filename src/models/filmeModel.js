@@ -20,23 +20,36 @@ function buscarFilme(idFilme) {
     return database.executar(instrucaoSql);
 }
 
-
-function verificarFavorito(idFilme,idUsuario){
+function verificarFavorito(idFilme, idUsuario) {
     var instrucaoSql = `
     SELECT * FROM favorito WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}';
 `;
 
     return database.executar(instrucaoSql);
-
 }
 
-function verificarAddLista(idFilme,idUsuario){
+function verificarAddLista(idFilme, idUsuario) {
     var instrucaoSql = `
     SELECT * FROM queroAssistir WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}';
 `;
 
     return database.executar(instrucaoSql);
+}
 
+function enviarAvaliacao(idFilme, idUsuario, descAvaliacao, notaAvaliacao) {
+    var instrucaoSql = `
+    INSERT INTO avaliacao (fkFilme,fkUsuario,descAvaliacao,notaAvaliacao) VALUES ('${idFilme}','${idUsuario}','${descAvaliacao}','${notaAvaliacao}');
+`;
+
+    return database.executar(instrucaoSql);
+}
+
+function verificarAvaliacao(idFilme, idUsuario) {
+    var instrucaoSql = `
+    SELECT * FROM avaliacao WHERE fkUsuario = '${idUsuario}' AND fkFilme = '${idFilme}'
+`;
+
+    return database.executar(instrucaoSql);
 }
 
 module.exports = {
@@ -44,4 +57,6 @@ module.exports = {
     buscarFilme,
     verificarFavorito,
     verificarAddLista,
+    enviarAvaliacao,
+    verificarAvaliacao,
 };

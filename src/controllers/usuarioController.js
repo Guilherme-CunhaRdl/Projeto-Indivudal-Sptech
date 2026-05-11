@@ -149,5 +149,5 @@ module.exports = {
     favoritar,
     queroAssistir,
     RemoverQueroAssistir,
-    RemoverFavoritar
+    RemoverFavoritar,
 }

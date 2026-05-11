@@ -29,6 +29,10 @@ router.post("/removerQueroAssistir", function (req, res) {
     usuarioController.RemoverQueroAssistir(req, res);
 });
 
+router.get("/puxarDados/:id", function (req, res) {
+    usuarioController.puxarDados(req, res);
+});
+
 
 
 

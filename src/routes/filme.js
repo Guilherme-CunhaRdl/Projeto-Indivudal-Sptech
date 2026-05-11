@@ -19,5 +19,13 @@ router.post("/verificarAddLista", function (req, res) {
     filmeController.verificarAddLista(req, res);
 });
 
+router.post("/enviarAvaliacao", function (req, res) {
+    filmeController.enviarAvaliacao(req, res);
+});
+
+
+router.post("/verificarAvaliacao", function (req, res) {
+    filmeController.verificarAddLista(req, res);
+});
 
 module.exports = router;

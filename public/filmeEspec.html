@@ -107,21 +107,29 @@
             <div class="div_modal">
                 <h2>SUA AVALIAÇÃO</h2>
                 <h2 id="modalTitulo">A Viagem de Chihiro</h2>
-                <p id="txt_avaliacao"></p>
-                <div class="div_btnAvaliar">
-                    <button class="btn-avaliar" onclick="nota(1)">1</button>
-                    <button class="btn-avaliar" onclick="nota(2)">2</button>
-                    <button class="btn-avaliar" onclick="nota(3)">3</button>
-                    <button class="btn-avaliar" onclick="nota(4)">4</button>
-                    <button class="btn-avaliar" onclick="nota(5)">5</button>
-                    <button class="btn-avaliar" onclick="nota(6)">6</button>
-                    <button class="btn-avaliar" onclick="nota(7)">7</button>
-                    <button class="btn-avaliar" onclick="nota(8)">8</button>
-                    <button class="btn-avaliar" onclick="nota(9)">9</button>
-                    <button class="btn-avaliar" onclick="nota(10)">10</button>
+
+                <div id="modalpt1">
+                    <p id="txt_avaliacao"></p>
+                    <div class="div_btnAvaliar">
+                        <button class="btn-avaliar" onclick="nota(1)">1</button>
+                        <button class="btn-avaliar" onclick="nota(2)">2</button>
+                        <button class="btn-avaliar" onclick="nota(3)">3</button>
+                        <button class="btn-avaliar" onclick="nota(4)">4</button>
+                        <button class="btn-avaliar" onclick="nota(5)">5</button>
+                        <button class="btn-avaliar" onclick="nota(6)">6</button>
+                        <button class="btn-avaliar" onclick="nota(7)">7</button>
+                        <button class="btn-avaliar" onclick="nota(8)">8</button>
+                        <button class="btn-avaliar" onclick="nota(9)">9</button>
+                        <button class="btn-avaliar" onclick="nota(10)">
+                            10  
+                        </button>
+                    </div>
                 </div>
 
-                <button class="btn_enviarAvaliar" onclick="fecharModal()">
+                <div id="modalpt2">
+                    <textarea name="" id="ipt_avaliacao" class="ipt_avaliacao" placeholder="Digite aqui sua avaliação"></textarea>
+                </div>
+                <button id="btnModal" class="btn_enviarAvaliar" onclick="chamarpt2()">
                     AVALIAR
                 </button>
             </div>
