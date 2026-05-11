@@ -33,6 +33,10 @@ router.get("/puxarDados/:id", function (req, res) {
     usuarioController.puxarDados(req, res);
 });
 
+router.get("/puxar5Filmes/:id", function (req, res) {
+    usuarioController.puxar5Filmes(req, res);
+});
+
 
 
 

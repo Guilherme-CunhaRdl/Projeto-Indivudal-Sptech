@@ -62,6 +62,56 @@ function RemoverQueroAssistir(idUsuario, idFilme) {
 
     return database.executar(instrucaoSql);
 }
+
+
+function puxarDados(idUsuario) {
+    var instrucaoSql = `
+SELECT
+    u.nomeUsuario,
+    u.email,
+    u.imgUsuario,
+    u.bannerUsuario,
+    u.dtCadastro,
+    COUNT(DISTINCT f.fkFilme) AS favoritos,
+    COUNT(DISTINCT qa.fkFilme) AS qtdQueroAssistir,
+    COUNT(DISTINCT a.idAvaliacao) AS avaliacoes
+FROM usuario u
+LEFT JOIN favorito f
+    ON f.fkUsuario = u.idUsuario
+LEFT JOIN avaliacao a
+    ON a.fkUsuario = u.idUsuario
+LEFT JOIN queroAssistir qa
+	ON qa.fkUsuario = u.idUsuario
+WHERE u.idUsuario = ${idUsuario}
+GROUP BY u.idUsuario;;
+`;
+    return database.executar(instrucaoSql);
+}
+
+
+function puxar5Filmes(idUsuario){
+
+    const instrucaoSql = `
+    SELECT 
+    f.idFilme,
+    f.nomeFilme,
+    f.imgFilme,
+    f.bannerFilme,
+    a.notaAvaliacao
+FROM avaliacao a
+JOIN filme f
+    ON a.fkFilme = f.idFilme
+WHERE a.fkUsuario = ${idUsuario}
+ORDER BY a.notaAvaliacao DESC
+LIMIT 5;
+    `;
+
+    return database.executar(instrucaoSql);
+
+}
+
+
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -69,4 +119,6 @@ module.exports = {
     queroAssistir,
     RemoverQueroAssistir,
     RemoverFavoritar,
+    puxarDados,
+    puxar5Filmes
 };

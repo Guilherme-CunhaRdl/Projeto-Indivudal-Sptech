@@ -143,6 +143,32 @@ function RemoverQueroAssistir(req,res){
 
 }
 
+function puxarDados(req, res) {
+    var idUsuario = req.params.id;
+
+    usuarioModel.puxarDados(idUsuario)
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function puxar5Filmes(req, res) {
+    var idUsuario = req.params.id;
+
+    usuarioModel.puxar5Filmes(idUsuario)
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -150,4 +176,6 @@ module.exports = {
     queroAssistir,
     RemoverQueroAssistir,
     RemoverFavoritar,
+    puxarDados,
+    puxar5Filmes,
 }

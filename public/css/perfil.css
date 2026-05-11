@@ -98,6 +98,15 @@ body {
     font-size: 15px;
 }
 
+.div_membro {
+    background-color: #131515a8;
+    padding: 10px;
+    width: 300px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+
 .div_dadosUsuario {
     align-items: center;
     display: flex;
