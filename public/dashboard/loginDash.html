@@ -5,8 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="./css/login.css" />
-      
+        <link rel="stylesheet" href="./css/loginDash.css" />
      
         <title>Login - Biblioteca do Howl</title>
 
@@ -15,11 +14,16 @@
 
     <body>
         <div class="div_container">
+
+            <div class="div_direita">
+                <img src="./assets/logoIcon.png" class="logoIcon" alt="" />
+            </div>
+
             <div class="div_esquerda">
-                <a href="index.html" class="btn_voltar">
+                <a href="../login.html" class="btn_voltar">
                     <i class="bi bi-arrow-left"></i> Voltar
                 </a>
-                <h1 class="titulo">- LOGIN -</h1>
+                <h1 class="titulo">- BEM VINDO ADMINISTRADOR -</h1>
 
                 <div class="inputBox">
                     <input type="email" placeholder="E-MAIL" id="email_input" class="ipt_login" />
@@ -34,25 +38,10 @@
                 <p class="msg_erro" id="idMsg_erro"></p>
 
                 <button class="btn_entrar" onclick="validarLogin()">ENTRAR</button>
-            <div class="div_mudarPag">
-                <p class="P_possuiConta">
-                    Não tem uma conta?
-                    <a href="./cadastro.html">Crie uma agora!</a><br>
 
-                    
-                </p>
-
-                <p>
-                    <a href="./dashboard/loginDash.html">Entrar como administrador</a> 
-                </p>
             </div>
 
-         
-            </div>
 
-            <div class="div_direita">
-                <img src="./assets/totoroSorriso.png" class="totoro" alt="" />
-            </div>
         </div>
     </body>
     <script src="./JS/validarLogin.js">

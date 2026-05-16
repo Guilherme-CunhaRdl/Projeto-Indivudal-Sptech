@@ -1,0 +1,8 @@
+.div_container{
+   display: flex;
+}
+
+.div_conteudo{
+    background-color: #0c0f13;
+    width: 100%;
+}
