@@ -1,21 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="./css/sidebar.css" />
-    <link rel="stylesheet" href="./css/dashUsuarios.css" />
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/global.css" />
+        <link rel="stylesheet" href="./css/sidebar.css" />
+        <link rel="stylesheet" href="./css/dashUsuarios.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="div_container">
+            <div id="sidebar"></div>
+            <div class="div_conteudo">
+                <div class="div_conteudoInfo">
+                    <div class="div_topbar"><h3>Usuarios</h3></div>
 
-    <div id="sidebar"></div>
-    
-</body>
+                    <div class="div_kpi">
+                        <div class="div_caixaKpi">
+                            <div
+                                class="kpi_icone"
+                                style="background-color: #1f2f26"
+                            >
+                                <i
+                                    class="bi bi-camera-reels-fill"
+                                    style="color: #6fb376"
+                                ></i>
+                            </div>
+                            <div class="kpi_info">
+                                <h2>25</h2>
+                                <p>Filmes Cadastrados</p>
+                            </div>
+                        </div>
+
+                        <div class="div_caixaKpi">
+                            <div
+                                class="kpi_icone"
+                                style="background-color: #252336"
+                            >
+                                <i
+                                    class="bi bi-people"
+                                    style="color: #553e8b"
+                                ></i>
+                            </div>
+                            <div class="kpi_info">
+                                <h3>25</h3>
+                                <p>Usuarios Registrados</p>
+                            </div>
+                        </div>
+
+                        <div class="div_caixaKpi">
+                            <div
+                                class="kpi_icone"
+                                style="background-color: #322b1c"
+                            >
+                                <i
+                                    class="bi bi-star-fill"
+                                    style="color: #f0aa2e"
+                                ></i>
+                            </div>
+                            <div class="kpi_info">
+                                <h3>25</h3>
+                                <p>Filmes favoritados</p>
+                            </div>
+                        </div>
+
+                        <div class="div_caixaKpi">
+                            <div
+                                class="kpi_icone"
+                                style="background-color: #192636"
+                            >
+                                <i
+                                    class="bi bi-heart-fill"
+                                    style="color: #4d98d9"
+                                ></i>
+                            </div>
+                            <div class="kpi_info">
+                                <h3>25</h3>
+                                <p>Filmes Curtidos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="div_usuarios">
+                        <div class="div_dadosUsuario">
+                            <div class="div_filtros">
+                                <select name="" id="" class="selectFuncao">
+                                    <option value="" selected disabled>
+                                        Selecione a função
+                                    </option>
+                                    <option value="adm">Administrador</option>
+                                    <option value="Usuario">Usuário</option>
+                                </select>
+
+                                <input
+                                    type="text"
+                                    placeholder="Digite o nome do Usuario"
+                                />
+                            </div>
+
+                            <div class="div_infoUsuario">
+                            
+                                <div class="div_caixaUsuarioTopo">
+                                    <div class="infoUsuarioPt1">
+
+                                        <h4 class="texto_topo">Usuario</h4>
+                                    </div>
+
+                                    <div class="infoUsuario">
+                                        <p class="texto_topo">
+                                           Contato
+                                        </p>
+                                        <p class="texto_topo">Função</p>
+                                    </div>
+
+                                    <div class="infoUsuario">
+                                        <p class="texto_topo">Ações</p>
+                                    </div>
+                                </div>
+
+                               
+
+                                <div class="div_caixaUsuario">
+                                    <div class="infoUsuarioPt1">
+                                        <img
+                                            src="./assets/HakuIcon.webp"
+                                            alt=""
+                                            class="imgUsuario"
+                                        />
+                                        <h4>Guilherme Cunha</h4>
+                                    </div>
+
+                                    <div class="infoUsuario">
+                                        <p class="emailUsuario">
+                                            guilherme@gmail.com
+                                        </p>
+                                        <p class="funcaoUsuario">Usuario</p>
+                                    </div>
+
+                                    <div class="infoUsuario">
+                                        <button class="btn_usuario editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+
+                                        <button class="btn_usuario apagar">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                                <div class="linha"></div>
+                                <div class="div_caixaUsuario">
+                                    <div class="infoUsuarioPt1">
+                                        <img
+                                            src="./assets/HakuIcon.webp"
+                                            alt=""
+                                            class="imgUsuario"
+                                        />
+                                        <h4>Guilherme Cunha</h4>
+                                    </div>
+
+                                    <div class="infoUsuario">
+                                        <p class="emailUsuario">
+                                            guilherme@gmail.com
+                                        </p>
+                                        <p class="funcaoAdm">Usuario</p>
+                                    </div>
+
+                                    <div class="infoUsuario">
+                                        <button class="btn_usuario editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+
+                                        <button class="btn_usuario apagar">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div_footer">TESTE</div>
+            </div>
+        </div>
+    </body>
 </html>
 
 <script src="./js/global.js"></script>
 <script src="./js/dashboardUsuarios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-

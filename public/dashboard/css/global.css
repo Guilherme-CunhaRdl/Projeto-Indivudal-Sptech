@@ -24,6 +24,8 @@
 }
 
 .div_conteudoInfo{
+    display: flex;
+    flex-direction: column;
     background-color: #0c0f13;
     flex: 1;
 }
