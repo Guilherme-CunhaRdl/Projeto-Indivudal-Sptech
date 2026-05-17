@@ -1,3 +1,13 @@
+
+
+function carregarDados(){
+    console.log("Chegou")
+    let ativo = document.getElementById("dashboard")
+    ativo.classList.add('ativo')
+}
+
+
+
 const graf2 = document.getElementById("graficoGenero");
 
 new Chart(graf2, {

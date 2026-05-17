@@ -8,9 +8,9 @@
     border-right: 1px solid #1c232b;
     padding: 24px;
     box-sizing: border-box;
+    position: sticky;
+    top: 0;
 }
-
-
 
 .div_main{
     display: flex;
