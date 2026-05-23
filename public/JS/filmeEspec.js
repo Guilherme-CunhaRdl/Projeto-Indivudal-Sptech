@@ -332,6 +332,15 @@ function verificarUsuario() {
             nota(dados.notaAvaliacao)
         });
 }
+ 
+
+function puxarQuiz(){
+    if (usuarioLogado == false) {
+        alert("Faça Login para liberar");
+        return;
+    }
+    window.location = "./quiz.html";
+}
 
 window.onload = () => {
     carregarFilme();

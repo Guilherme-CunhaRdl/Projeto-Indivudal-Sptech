@@ -375,3 +375,42 @@ INSERT INTO filmeGenero (fkFilme, fkGenero) VALUES
 (23,2),(23,4),
 (24,1),(24,2),
 (25,2),(25,3);
+
+
+CREATE VIEW vwSelecionarQuiz AS
+SELECT 
+    f.idFilme,
+    f.nomeFilme,
+    q.idQuiz,
+    q.nomeQuiz,
+    p.idPergunta,
+    p.tituloPergunta,
+    r.idRespostaPergunta,
+    r.descResposta,
+    r.respostaVerdadeira
+FROM filme f
+JOIN Quiz q 
+    ON q.fkFilme = f.idFilme
+JOIN PerguntaQuiz p 
+    ON p.fkQuiz = q.idQuiz
+JOIN RespostaPergunta r 
+    ON r.fkPerguntaQuiz = p.idPergunta;
+
+CREATE VIEW VwSelecionarFilmeQuiz AS
+SELECT 
+	f.idFilme,
+    f.nomeFilme,
+    f.bannerFilme,
+    f.imgFilme,
+    q.idQuiz,
+    q.nomeQuiz,
+    COUNT(p.idPergunta) AS qtdPerguntas
+FROM filme f
+JOIN Quiz q 
+    ON q.fkFilme = f.idFilme
+JOIN PerguntaQuiz p 
+    ON p.fkQuiz = q.idQuiz
+GROUP BY     
+	f.nomeFilme,
+    q.idQuiz,
+    q.nomeQuiz;

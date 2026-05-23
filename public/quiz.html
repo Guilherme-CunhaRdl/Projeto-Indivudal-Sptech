@@ -18,7 +18,7 @@
     <body>
         <div id="navbar"></div>
 
-        <div class="quiz_banner">
+        <div class="quiz_banner" id="quizBanner">
             <div class="overlay"></div>
 
             <div class="quiz_conteudo">
@@ -36,7 +36,7 @@
                     <div class="quiz_infos">
                         <div class="quiz_info">
                             <i class="bi bi-patch-question"></i>
-                            <span>10 perguntas</span>
+                            <span id="qtdPergunta">10 perguntas</span>
                         </div>
 
                         <div class="quiz_info">
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="div_direita">
-                    <div class="div_bannerFilme">
+                    <div class="div_bannerFilme" id="capaFilme">
                         <img
                             src="./assets/imgFilmes/chihiro.jpg"
                             class="imgFilme"
@@ -70,20 +70,20 @@
         <div class="quiz_perguntas">
             <div class="quiz_card">
                 <div class="quiz_topo">
-                    <span>Pergunta 1 de 10</span>
+                    <span id="numeroPergunta" >Pergunta 1 de 10</span>
 
                     <div class="barra_progresso">
                         <div class="progresso"></div>
                     </div>
                 </div>
 
-                <h1 class="pergunta">
+                <h1 class="pergunta" id="tituloPergunta">
                     Qual o nome verdadeiro de Haku?
                 </h1>
 
-                <div class="alternativas">
-
-                    <button class="alternativa">
+                <div class="alternativas" id="alternativas">
+                    
+                    <button  class="alternativa">
                         Kohaku
                     </button>
 
