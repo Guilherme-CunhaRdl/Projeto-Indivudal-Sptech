@@ -1,0 +1,103 @@
+function entrar() {
+     
+
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+
+
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticarAdm", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+        }),
+    })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then((json) => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                    sessionStorage.IMG_USUARIO = json.imgUsuario;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.LOG_USUARIO = true
+
+                    setTimeout(function () {
+                        window.location = "./dashboard.html ";
+                    }, 1000); // apenas para exibir o loading
+                });
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                idMsg_erro.innerHTML = 'Contem um erro no login, veifique as informações e tente novamente'
+                email_input.classList.add("inputErro");
+                senha_input.classList.add("inputErro");
+                
+
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+
+    return false;
+}
+
+
+function validarLogin(){
+    loginValido = true;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    let mensagemDeErro = 'Contem um erro no login, veifique as informações e tente novamente'
+
+    email_input.classList.remove("inputErro");
+    senha_input.classList.remove("inputErro");
+
+    if (emailVar == "" || senhaVar == "") {
+        loginValido = false
+    }
+
+
+    if(!emailVar.includes('@')){
+        loginValido = false
+    }
+
+    if(!emailVar.includes('.')){
+        loginValido = false
+    }
+
+    if(emailVar.includes(' ')){
+        loginValido = false
+    }
+
+    if(senhaVar.includes(' ')){
+        loginValido = false
+    }
+
+    
+
+   if(loginValido == false){
+        idMsg_erro.innerHTML = mensagemDeErro
+        email_input.classList.add("inputErro");
+        senha_input.classList.add("inputErro");
+        return;
+   }else{
+    entrar();
+   }
+}
+

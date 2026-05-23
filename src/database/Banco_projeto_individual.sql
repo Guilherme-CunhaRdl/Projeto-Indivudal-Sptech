@@ -9,6 +9,7 @@ email VARCHAR(150),
 senha VARCHAR(255),
 imgUsuario VARCHAR(200),
 bannerUsuario VARCHAR(200),
+cargo VARCHAR(10),
 dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -235,13 +235,7 @@ function validarEmail() {
         ipt_emailErro.innerHTML = "O '@' não pode ser no inicio ou no final do E-mail";
         return;
     }
-
-    if (emailVar.indexOf(".") < indiceDoArroba){
-        email_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_emailErro.innerHTML = "O caractere de '.' tem que vir apos o '@' ";
-        return;
-    }
+    
     
 
 }
