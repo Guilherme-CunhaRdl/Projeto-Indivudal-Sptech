@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="./css/nav.css" />
+        <link rel="stylesheet" href="./css/quiz.css" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        />
+
+        <title>Quiz - Biblioteca do Howl</title>
+    </head>
+
+    <body>
+        <div id="navbar"></div>
+
+        <div class="quiz_banner">
+            <div class="overlay"></div>
+
+            <div class="quiz_conteudo">
+                <div class="div_esquerda">
+                    <span class="quiz_tipo"> QUIZ FILME </span>
+
+                    <h1 id="tituloQuiz" class="h1_titulo">
+                        A Viagem de Chihiro
+                    </h1>
+
+                    <p id="descQuiz">
+                        Você realmente conhece o mundo espiritual?
+                    </p>
+
+                    <div class="quiz_infos">
+                        <div class="quiz_info">
+                            <i class="bi bi-patch-question"></i>
+                            <span>10 perguntas</span>
+                        </div>
+
+                        <div class="quiz_info">
+                            <i class="bi bi-bar-chart"></i>
+                            <span>Médio</span>
+                        </div>
+
+                        <div class="quiz_info">
+                            <i class="bi bi-clock"></i>
+                            <span>5 min</span>
+                        </div>
+                    </div>
+
+                    <button class="btn_comecarQuiz" onclick="iniciarQuiz()">
+                        <i class="bi bi-play-circle"></i> COMEÇAR QUIZ
+                    </button>
+                </div>
+
+                <div class="div_direita">
+                    <div class="div_bannerFilme">
+                        <img
+                            src="./assets/imgFilmes/chihiro.jpg"
+                            class="imgFilme"
+                            alt=""
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz_perguntas">
+            <div class="quiz_card">
+                <div class="quiz_topo">
+                    <span>Pergunta 1 de 10</span>
+
+                    <div class="barra_progresso">
+                        <div class="progresso"></div>
+                    </div>
+                </div>
+
+                <h1 class="pergunta">
+                    Qual o nome verdadeiro de Haku?
+                </h1>
+
+                <div class="alternativas">
+
+                    <button class="alternativa">
+                        Kohaku
+                    </button>
+
+                    <button class="alternativa">
+                        Kohaku
+                    </button>
+
+
+                    <button class="alternativa">
+                        Kohaku
+                    </button>
+
+                    <button class="alternativa">
+                        Kohaku
+                    </button>
+                
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="./JS/global.js"></script>
+<script src="./JS/quiz.js"></script>

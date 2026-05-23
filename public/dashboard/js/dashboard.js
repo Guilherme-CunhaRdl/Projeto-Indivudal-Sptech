@@ -91,3 +91,5 @@ new Chart(graficoAvaliacoes, {
         }]
     }
 });
+
+

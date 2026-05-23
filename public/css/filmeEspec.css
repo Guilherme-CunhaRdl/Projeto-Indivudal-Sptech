@@ -47,7 +47,7 @@ body {
     transform: translateY(-50%);
     color: white;
     gap: 25px;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .voltar {
@@ -92,7 +92,6 @@ body {
 .div_botoes {
     display: flex;
     gap: 10px;
-    
     margin-top: 10px;
 }
 
@@ -331,6 +330,35 @@ body {
 .btn_enviarAvaliar:hover{
     background-color: #5c8972;
 }
+
+
+.btn_quiz{
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 10px;
+
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    background-color: rgba(255,255,255,0.08);
+    border: 2px solid #38ce83;
+    color: white;
+
+    backdrop-filter: blur(5px);
+}
+
+.btn_quiz:hover{
+    background-color: #38ce83;
+    color: #111;
+}
+
 
 
 #modalpt1{
