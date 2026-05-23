@@ -238,7 +238,7 @@ function carregarFilme() {
 
             tituloFilme.innerHTML = dados.nomeFilme;
 
-            qtdMinutosFilme.innerHTML = dados.qtdMinutos;
+            qtdMinutosFilme.innerHTML = `${dados.qtdMinutos} Min`;
             imgFilme.innerHTML = `<img src="./assets/imgFilmes/${dados.bannerFilme}" class="img_banner" />`;
             descFilme.innerHTML = dados.descFilme;
             modalTitulo.innerHTML = dados.nomeFilme;

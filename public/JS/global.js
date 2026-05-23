@@ -22,8 +22,6 @@ fetch("navbar.html")
                         
                         <a href="./perfil.html">Perfil <i class="bi bi-person"></i></a>
                         <hr>
-                        <a href="">Configurações <i class="bi bi-gear"></i></a>
-                        <hr>
                         <a href="" onclick="sair()">Sair <i class="bi bi-box-arrow-right"></i></a>`;
         } else {
             loginUsuario.innerHTML = `            

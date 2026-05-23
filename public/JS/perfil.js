@@ -20,7 +20,7 @@ function puxarDados() {
 
             document.getElementById("banner_usuario").src = dados.bannerUsuario
                 ? `./assets/${dados.bannerUsuario}`
-                : "./assets/ChihiroBanner.jpg";
+                : "./assets/BannerPadrao.png";
 
                 lista_usuario.innerHTML = dados.qtdQueroAssistir;
                 favoritos_usuario.innerHTML = dados.favoritos;
