@@ -13,8 +13,6 @@ function autenticar(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-
-
 function autenticarAdm(email, senha) {
     console.log(
         "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ",
@@ -27,7 +25,6 @@ function autenticarAdm(email, senha) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
 
 function cadastrar(nome, email, senha, imgUsuario) {
     console.log(
@@ -79,10 +76,10 @@ function RemoverQueroAssistir(idUsuario, idFilme) {
     return database.executar(instrucaoSql);
 }
 
-
 function puxarDados(idUsuario) {
     var instrucaoSql = `
 SELECT
+    u.senha,
     u.nomeUsuario,
     u.email,
     u.imgUsuario,
@@ -104,9 +101,7 @@ GROUP BY u.idUsuario;;
     return database.executar(instrucaoSql);
 }
 
-
-function puxar5Filmes(idUsuario){
-
+function puxar5Filmes(idUsuario) {
     const instrucaoSql = `
     SELECT 
     f.idFilme,
@@ -123,10 +118,45 @@ LIMIT 5;
     `;
 
     return database.executar(instrucaoSql);
-
 }
 
+function editarPerfil(
+    idUsuario,
+    nome,
+    email,
+    senha,
+    imgUsuario,
+    bannerUsuario
+) {
+    let instrucaoSql = `
+    
+        UPDATE usuario
+        SET
+            nomeUsuario = '${nome}',
+            email = '${email}',
+            senha = '${senha}'
+    `;
 
+    if (imgUsuario != null) {
+        instrucaoSql += `
+            , imgUsuario = '${imgUsuario}'
+        `;
+    }
+
+    if (bannerUsuario != null) {
+        instrucaoSql += `
+            , bannerUsuario = '${bannerUsuario}'
+        `;
+    }
+
+    instrucaoSql += `
+        WHERE idUsuario = ${idUsuario};
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     autenticar,
@@ -137,5 +167,6 @@ module.exports = {
     RemoverFavoritar,
     puxarDados,
     puxar5Filmes,
-    autenticarAdm
+    autenticarAdm,
+    editarPerfil,
 };

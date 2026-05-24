@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const upload = require('../config/configUpload')
+const upload = require("../config/configUpload");
 
 var usuarioController = require("../controllers/usuarioController");
 
@@ -12,8 +12,6 @@ router.post("/cadastrar", upload.single("foto"), function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
-
-
 
 router.post("/autenticarAdm", function (req, res) {
     usuarioController.autenticar(req, res);
@@ -43,7 +41,15 @@ router.get("/puxar5Filmes/:id", function (req, res) {
     usuarioController.puxar5Filmes(req, res);
 });
 
-
-
+router.put(
+    "/editarPerfil",
+    upload.fields([
+        { name: "imgServer", maxCount: 1 },
+        { name: "bannerServer", maxCount: 1 },
+    ]),
+    function (req, res) {
+        usuarioController.editarPerfil(req, res);
+    }
+);
 
 module.exports = router;

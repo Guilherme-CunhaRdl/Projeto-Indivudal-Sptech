@@ -15,19 +15,29 @@
         <div id="navbar"></div>
         <div class="div_container">
             <div class="div_banner">
-                <img src="./assets/BannerPadrao.png" class="ImgBanner" id="banner_usuario" />
+                <img
+                    src="./assets/BannerPadrao.png"
+                    class="ImgBanner"
+                    id="banner_usuario"
+                />
 
                 <div class="div_infoUsuario">
-                    <img src="./assets/HakuIcon.webp" class="imgPerfil" id="img_usuario" />
+                    <img
+                        src="./assets/HakuIcon.webp"
+                        class="imgPerfil"
+                        id="img_usuario"
+                    />
 
                     <div class="div_dados">
                         <h1 id="nome_Usuario">GUILHERME CUNHA</h1>
 
                         <div class="div_email">
-                            <i class="bi bi-envelope"></i> <span id="email_usuario"> guilherme@gmail.com</span> 
+                            <i class="bi bi-envelope"></i>
+                            <span id="email_usuario"> guilherme@gmail.com</span>
                         </div>
                         <div class="div_membro">
-                            <span>Membro desde:</span> <span id="dtCad_usuario"> guilherme@gmail.com</span> 
+                            <span>Membro desde:</span>
+                            <span id="dtCad_usuario"> guilherme@gmail.com</span>
                         </div>
                     </div>
                 </div>
@@ -37,7 +47,7 @@
                         <i class="bi bi-palette"></i>
                     </button>
 
-                    <button class="btnEditarPerfil">
+                    <button class="btnEditarPerfil" onclick="abrirModal()">
                         <i class="bi bi-pencil-fill"></i> EDITAR PERFIL
                     </button>
                 </div>
@@ -64,13 +74,13 @@
                         </div>
 
                         <div class="div_caixaEstatica">
-                          <i class="bi bi-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                             <h2>2</h2>
                             <span>QUIZES RESPONDIDOS</span>
                         </div>
 
                         <div class="div_caixaEstatica">
-                          <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
                             <h2 id="avaliacoes_usuario">8</h2>
                             <span>FILMES AVALIADOS</span>
                         </div>
@@ -84,9 +94,90 @@
                         <a href="">VER TODAS</a>
                     </div>
 
-                    <div class="div_filmes">
+                    <div class="div_filmes"></div>
+                </div>
+            </div>
+        </div>
 
+        <div class="modalEditar" id="modalEditar">
+            <div class="div_modal">
+                <div class="div_topoModal">
+                    <h1>EDITAR PERFIL</h1>
+
+                    <button class="btnFechar" onclick="fecharModal()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="div_bannerEditar">
+                    <img
+                        src="./assets/BannerPadrao.png"
+                        id="banner_usuarioEditar"
+                    />
+                    <input
+                        type="file"
+                        id="inputBanner"
+                        hidden
+                        accept="image/*"
+                        onchange="previewBanner()"
+                    />
+
+                    <button
+                        class="btnTrocarBanner"
+                        onclick="inputBanner.click()"
+                    >
+                        <i class="bi bi-image"></i>
+                        ALTERAR BANNER
+                    </button>
+                </div>
+
+                <div class="div_fotoPerfilEditar">
+                    <img src="./assets/HakuIcon.webp" id="img_usuarioEditar" />
+
+                    <input
+                        type="file"
+                        id="inputFoto"
+                        hidden
+                        accept="image/*"
+                        onchange="previewFoto()"
+                    />
+
+                    <button class="btnTrocarFoto" onclick="inputFoto.click()">
+                        <i class="bi bi-camera-fill"></i>
+                    </button>
+                </div>
+
+                <div class="div_inputsModal">
+                    <div class="div_input">
+                        <span>Nome de usuário</span>
+                        <input
+                            type="text"
+                            id="ipt_nomeEditar"
+                            placeholder="Digite seu nome"
+                        />
                     </div>
+
+                    <div class="div_input">
+                        <span>Email</span>
+                        <input
+                            type="email"
+                            id="ipt_emailEditar"
+                            placeholder="Digite seu email"
+                        />
+                    </div>
+
+                    <div class="div_input">
+                        <span>Senha</span>
+                        <input
+                            type="text"
+                            id="ipt_senha"
+                            placeholder="Digite sua nova senha"
+                        />
+                    </div>
+                </div>
+
+                <div class="div_btnSalvar">
+                    <button class="btnSalvarPerfil" onclick="salvarPerfil()" >SALVAR ALTERAÇÕES</button>
                 </div>
             </div>
         </div>

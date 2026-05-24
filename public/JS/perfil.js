@@ -13,13 +13,31 @@ function puxarDados() {
             dtCad_usuario.innerHTML = dataBR;
  
             nome_Usuario.innerHTML = dados.nomeUsuario;
+
+            ipt_nomeEditar.value = dados.nomeUsuario;
+
             email_usuario.innerHTML = dados.email;
+
+            ipt_emailEditar.value = dados.email;
+
+            ipt_senha.value = dados.senha;
+
+
+
             document.getElementById("img_usuario").src = dados.imgUsuario
                 ? `./assets/imgUsuarios/${dados.imgUsuario}`
                 : "./assets/mononokeIcon.jpg";
 
+                document.getElementById("img_usuarioEditar").src = dados.imgUsuario
+                ? `./assets/imgUsuarios/${dados.imgUsuario}`
+                : "./assets/mononokeIcon.jpg";
+
             document.getElementById("banner_usuario").src = dados.bannerUsuario
-                ? `./assets/${dados.bannerUsuario}`
+                ? `./assets/imgUsuarios/${dados.bannerUsuario}`
+                : "./assets/BannerPadrao.png";
+
+                document.getElementById("banner_usuarioEditar").src = dados.bannerUsuario
+                ? `./assets/imgUsuarios/${dados.bannerUsuario}`
                 : "./assets/BannerPadrao.png";
 
                 lista_usuario.innerHTML = dados.qtdQueroAssistir;
@@ -53,6 +71,72 @@ function puxar5Filmes(){
     });
 
 }
+
+
+function abrirModal() {
+    modalEditar.style.display = "flex";
+}
+
+function fecharModal() {
+    modalEditar.style.display = "none";
+}
+
+function salvarPerfil() {
+    let idUsuario = sessionStorage.ID_USUARIO;
+    let nome = ipt_nomeEditar.value;
+    let email = ipt_emailEditar.value;
+    let senha = ipt_senha.value
+
+    var img = inputFoto.files[0];
+    var banner = inputBanner.files[0];
+
+    let formData = new FormData();
+
+    formData.append("idUsuarioServer",idUsuario)
+    formData.append("nomeServer", nome);
+    formData.append("emailServer", email);
+    formData.append("senhaServer", senha);
+    formData.append("imgServer", img);
+    formData.append("bannerServer", banner);
+    
+  
+
+    fetch("/usuarios/editarPerfil", {
+        method: "PUT",
+        body: formData
+    })
+    .then(() => {
+        alert("Perfil atualizado");
+        location.reload();
+    });
+}
+
+
+function previewFoto() {
+
+    var arquivo = inputFoto.files[0];
+
+    if (arquivo) {
+
+        var novaImagem = URL.createObjectURL(arquivo);
+
+        img_usuarioEditar.src = novaImagem;
+    }
+}
+
+function previewBanner() {
+
+    var arquivo = inputBanner.files[0];
+
+    if (arquivo) {
+
+        var novaImagem = URL.createObjectURL(arquivo);
+
+        banner_usuarioEditar.src = novaImagem;
+    }
+}
+
+
 
 window.onload = () => {
     puxarDados()
