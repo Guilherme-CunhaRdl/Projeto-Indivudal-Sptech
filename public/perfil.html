@@ -63,7 +63,7 @@
                             <h2 id="lista_usuario">12</h2>
                             <span
                                 >ADICIONADOS A
-                                <span class="queroLink">LISTA</span>
+                                <span class="queroLink" onclick="abrirModalLista()">LISTA</span>
                             </span>
                         </div>
 
@@ -91,7 +91,7 @@
                     <div class="div_txtFilmesAvailiados">
                         <h1>FILMES MAIS BEM AVALIADOS</h1>
 
-                        <a href="">VER TODAS</a>
+                        <a onclick="abrirModalAvaliacoes()">VER TODAS</a>
                     </div>
 
                     <div class="div_filmes"></div>
@@ -177,10 +177,47 @@
                 </div>
 
                 <div class="div_btnSalvar">
-                    <button class="btnSalvarPerfil" onclick="salvarPerfil()" >SALVAR ALTERAÇÕES</button>
+                    <button class="btnSalvarPerfil" onclick="salvarPerfil()">
+                        SALVAR ALTERAÇÕES
+                    </button>
                 </div>
             </div>
         </div>
+
+        <div class="modalAvaliacoes" id="modalAvaliacoes">
+            <div class="boxModalAvaliacoes">
+                <div class="topoModal">
+                    <h1>MINHAS AVALIAÇÕES</h1>
+
+                    <button onclick="fecharModalAvaliacoes()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="containerAvaliacoes" id="containerAvaliacoes"></div>
+            </div>
+        </div>
+
+
+        <div class="modalLista" id="modalLista">
+            <div class="boxModalLista">
+                <div class="topoModal">
+                    <h1>MINHA LISTA</h1>
+
+                    <button onclick="fecharModalLista()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="containerLista" id="containerLista"></div>
+            </div>
+        </div>
+
+
+
+
+
+
     </body>
 </html>
 

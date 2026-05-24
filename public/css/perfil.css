@@ -10,7 +10,6 @@ body {
 }
 
 .div_contaniner {
-
     width: 100vw;
     height: 100vh;
 }
@@ -107,7 +106,6 @@ body {
     font-size: 15px;
 }
 
-
 .div_dadosUsuario {
     align-items: center;
     display: flex;
@@ -145,7 +143,7 @@ body {
     gap: 2px;
 }
 
-.queroLink{
+.queroLink {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -180,7 +178,7 @@ body {
     height: 15%;
 }
 
-.div_txtFilmesAvailiados a{
+.div_txtFilmesAvailiados a {
     color: white;
 }
 
@@ -198,10 +196,12 @@ body {
 }
 
 
+
+/*Modal de editar o perfil */
 .modalEditar {
     position: fixed;
     inset: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     display: none;
     align-items: center;
     justify-content: center;
@@ -215,8 +215,6 @@ body {
     overflow: hidden;
     position: relative;
 }
-
-
 
 .div_topoModal {
     display: flex;
@@ -253,7 +251,7 @@ body {
     padding: 10px 18px;
     border: none;
     border-radius: 6px;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
     cursor: pointer;
     display: flex;
@@ -334,10 +332,164 @@ body {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 }
 .btnSalvarPerfil:hover {
     background-color: #7443eb;
 }
 
 
+/*Modal das avaliações */
+.modalAvaliacoes {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.boxModalAvaliacoes {
+    width: 900px;
+    height: 80vh;
+    background-color: #181818;
+    border-radius: 15px;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.topoModal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.containerAvaliacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cardAvaliacao {
+    display: flex;
+    gap: 20px;
+    background-color: #101010;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+}
+
+.cardAvaliacao img {
+    width: 120px;
+    border-radius: 8px;
+}
+
+.infoAvaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/*Modal da lista */
+
+
+.modalLista {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.boxModalLista {
+    width: 900px;
+    height: 80vh;
+    background-color: #181818;
+    border-radius: 15px;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+
+.containerLista {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.cardFilme {
+    color: white;
+}
+
+.div_imgFilme {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.div_imgFilme img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.overlayFilme {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.div_imgFilme:hover .overlayFilme {
+    opacity: 1;
+}
+
+.div_imgFilme:hover img {
+    transform: scale(1.05);
+}
+
+.btnRemover {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #8b5cf6;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btnRemover:hover {
+    transform: scale(1.05);
+}
+
+.infoFilme {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.infoFilme h2 {
+    font-size: 18px;
+}
+
+.infoFilme span {
+    color: #9f9f9f;
+    font-size: 14px;
+}
