@@ -20,4 +20,16 @@ router.get("/filmesFavoritados", function (req, res) {
     dashboardController.filmesMaisFavoritados(req, res);
 });
 
+router.get("/listarFilmes", function (req, res) {
+    dashboardController.listarFilmes(req, res);
+});
+
+router.get("/puxarFilme/:id", function (req, res) {
+    dashboardController.puxarFilme(req, res);
+});
+
+router.get("/listarUsuarios", function(req, res) {
+    dashboardController.listarUsuarios(req, res);
+});
+
 module.exports = router;

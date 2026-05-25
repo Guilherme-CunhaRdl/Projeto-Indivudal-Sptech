@@ -48,9 +48,51 @@ function filmesMaisFavoritados(req, res) {
         });
 }
 
+function listarFilmes(req, res) {
+
+    dashboardModel.listarFilmes()
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function puxarFilme(req, res) {
+    var idFilme = req.params.id;
+
+
+    dashboardModel.puxarFilme(idFilme)
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function listarUsuarios(req, res) {
+
+    dashboardModel.listarUsuarios()
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
 module.exports = {
     buscarKPIs,
     buscarGeneroFilmes,
     filmesMaisAvaliados,
-    filmesMaisFavoritados
+    filmesMaisFavoritados,
+    listarFilmes,
+    puxarFilme,
+    listarUsuarios
 }

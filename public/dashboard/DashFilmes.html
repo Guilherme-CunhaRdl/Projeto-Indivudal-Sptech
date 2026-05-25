@@ -16,22 +16,8 @@
                     <div class="div_topbar"><h3>Filmes</h3></div>
                 </div>
 
-                <div class="container_Filmes">
-                    <div class="card_filme">
-                        <img src="./assets/Princesa_Mononoke.webp" alt="" />
-                        <div class="texto_sobre">
-                            <h3>Princesa Mononoke</h3>
-                            <p>2000 • 117 min</p>
-                            <span>
-                                <i
-                                    class="bi bi-star-fill"
-                                    style="color: #f0aa2e"
-                                ></i>
-                                9,6(Avaliações)
-                            </span>
-                            <button onclick="abrirModal()">Ver detalhes</button>
-                        </div>
-                    </div>
+                <div class="container_Filmes" id="containerFilmes">
+
                 </div>
 
                 <div class="div_footer">TESTE</div>
@@ -44,31 +30,32 @@
                                 src="./assets/Princesa_Mononoke.webp"
                                 alt=""
                                 class="imgModal"
+                                id="imgModal"
                             />
                         </div>
 
                         <div class="div_infoFilme">
-                            <h2>Princesa Mononoke</h2>
-                            <div class="div_generosFilmes">
+                            <h2 id="nomeFilme">Princesa Mononoke</h2>
+                            <div class="div_generosFilmes" id="divGenerosFilmes">
                                 <span>Ficcção</span> <span>Ficcção</span>
                             </div>
 
                             <div class="div_dadosFilme">
-                                <span> 200 • 117 min • </span>
+                                <span id="dataFilme"> 200 • 117 min • </span>
 
                                 <span>
                                     <i
                                         class="bi bi-star-fill"
                                         style="color: #f0aa2e"
                                     ></i>
-                                    9,6(Avaliações)
+                                <span id="mediaAvaliacoesModal">9,6(Avaliações)</span>
                                 </span>
                             </div>
 
                             <div class="linha"></div>
 
                             <div class="div_descFilme">
-                                <p>
+                                <p id="descFilme">
                                     Lorem ipsum dolor, sit amet consectetur
                                     adipisicing elit. Autem rem temporibus at
                                     molestias laudantium blanditiis voluptatibus
@@ -80,8 +67,8 @@
 
                             <div class="linha"></div>
                             <div class="div_produtores">
-                                <p><b>Diretor:</b> Hayao Miyazaki</p>
-                                <p><b>Produtor:</b> Hayao Miyazaki</p>
+                                <p><b>Diretor:</b> <span id="nomeDiretor">Hayao Miyazaki</span></p>
+                                <p><b>Produtor:</b> <span id="nomeRoteirista">Hayao Miyazaki</span></p>
                             </div>
 
                             <div class="linha"></div>
