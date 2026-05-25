@@ -1,95 +1,213 @@
+window.onload = () => {
+    buscarKPIs();
+    buscarGraficoGenero();
+    filmesMaisAvaliados();
+    buscarGraficoFavoritos()
+};
+function buscarKPIs() {
+    fetch("/dashboard/kpis")
+        .then((resposta) => resposta.json())
+        .then((dados) => {
+            qtdFilmes.innerHTML = dados[0].totalFilmes;
 
+            UsuariosRegistrados.innerHTML = dados[0].totalUsuarios;
 
-function carregarDados(){
-    console.log("Chegou")
-    let ativo = document.getElementById("dashboard")
-    ativo.classList.add('ativo')
+            filmesFavoritados.innerHTML = dados[0].totalFavoritos;
+
+            qtdCurtidas.innerHTML = dados[0].totalCurtidas;
+        })
+        .catch((erro) => {
+            console.log(erro);
+        });
 }
 
+function filmesMaisAvaliados() {
+    fetch("/dashboard/filmesMaisAvaliados")
+        .then((resposta) => resposta.json())
+        .then((dados) => {
+            for (let i = 0; i < dados.length; i++) {
+                filmesAvaliados.innerHTML += `                                
+                            <div class="div_filme">
+                                    <div class="imgFilme">
+                                        <h4>${i + 1} </h4>
+                                        <img
+                                            src="../assets/imgFilmes/${dados[i].imgFilme}"
+                                            alt=""
+                                        />
+                                    </div>
+                                    <div class="notaFilme">
+                                        <span
+                                            ><i class="bi bi-star-fill"></i>
+                                            ${dados[i].media}</span
+                                        >
+                                    </div>
+                                    <div class="qtdAvaliações">${
+                                        dados[i].qtdAvaliacoes
+                                    }</div>
+                                </div>
+`;
+            }
+        })
+        .catch((erro) => {
+            console.log(erro);
+        });
+}
 
+function buscarGraficoGenero() {
+    fetch("/dashboard/graficoGenero")
+        .then((resposta) => resposta.json())
+        .then((dados) => {
+            let labels = [];
+            let valores = [];
 
-const graf2 = document.getElementById("graficoGenero");
+            for (let i = 0; i < dados.length; i++) {
+                labels.push(dados[i].nomeGenero);
+                valores.push(dados[i].totalFilmes);
+            }
 
-new Chart(graf2, {
-    type: "doughnut",
+            const graf2 = document.getElementById("graficoGenero");
 
-    data: {
-        labels: ["Ação", "Terror", "Drama", "Ficção", "Comédia"],
+            new Chart(graf2, {
+                type: "doughnut",
 
-        datasets: [
-            {
-                label: "Filmes por Gênero",
+                data: {
+                    labels: labels,
 
-                data: [42, 28, 35, 20, 17],
+                    datasets: [
+                        {
+                            label: "Filmes por Gênero",
 
-                backgroundColor: [
-                    "#6fb376", 
-                    "#553e8b",
-                    "#4d98d9",
-                    "#f0aa2e",
-                    "#d95f5f", 
-                ],
+                            data: valores,
 
-                borderWidth: 0,
-                hoverOffset: 6,
-            },
-        ],
-    },
+                            backgroundColor: [
+                                "#6fb376",
+                                "#553e8b",
+                                "#4d98d9",
+                                "#f0aa2e",
+                                "#d95f5f",
+                                "#8b5cf6",
+                            ],
 
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
+                            borderWidth: 0,
+                            hoverOffset: 6,
+                        },
+                    ],
+                },
 
-        cutout: "72%",
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
 
-        plugins: {
-            legend: {
-                position: "bottom",
+                    cutout: "72%",
 
-                labels: {
-                    color: "#d1d5db",
-                    padding: 20,
-                    usePointStyle: true,
-                    pointStyle: "circle",
-                    font: {
-                        size: 13,
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+
+                            labels: {
+                                color: "#d1d5db",
+                                padding: 20,
+                                usePointStyle: true,
+                                pointStyle: "circle",
+
+                                font: {
+                                    size: 13,
+                                },
+                            },
+                        },
                     },
                 },
-            },
-        },
-    },
-});
+            });
+        })
+        .catch((erro) => {
+            console.log(erro);
+        });
+}
 
+function buscarGraficoFavoritos() {
 
-const graficoAvaliacoes = document.getElementById("graficoAvaliacoes");
+    fetch("/dashboard/filmesFavoritados")
+        .then((resposta) => resposta.json())
+        .then((dados) => {
 
-new Chart(graficoAvaliacoes, {
-    type: 'line',
+            let labels = [];
+            let valores = [];
 
-    data: {
-        labels: [
-            'Jan',
-            'Fev',
-            'Mar',
-            'Abr',
-            'Mai',
-            'Jun'
-        ],
+            for (let i = 0; i < dados.length; i++) {
 
-        datasets: [{
-            label: 'Avaliações',
+                labels.push(dados[i].nomeFilme);
+                valores.push(dados[i].totalFavoritos);
+            }
 
-            data: [120, 190, 300, 250, 400, 520],
+            const ctx = document.getElementById("graficoAvaliacoes");
 
-            borderColor: '#6fb376',
+            new Chart(ctx, {
 
-            backgroundColor: 'rgba(111, 179, 118, 0.15)',
+                type: "bar",
 
-            tension: 0.4,
+                data: {
 
-            fill: true
-        }]
-    }
-});
+                    labels: labels,
 
+                    datasets: [{
+                        label: "Favoritos",
 
+                        data: valores,
+
+                        borderRadius: 8,
+
+                        backgroundColor: [
+                            "#6fb376",
+                            "#553e8b",
+                            "#4d98d9",
+                            "#f0aa2e",
+                            "#d95f5f"
+                        ]
+                    }]
+                },
+
+                options: {
+
+                    indexAxis: 'y',
+
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            display: false
+                        }
+                    },
+
+                    scales: {
+
+                        x: {
+
+                            ticks: {
+                                color: "#9ca3af"
+                            },
+
+                            grid: {
+                                color: "#1f2937"
+                            }
+                        },
+
+                        y: {
+
+                            ticks: {
+                                color: "#d1d5db"
+                            },
+
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch((erro) => {
+            console.log(erro);
+        });
+}
