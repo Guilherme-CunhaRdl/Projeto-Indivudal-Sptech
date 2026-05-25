@@ -53,18 +53,19 @@ function puxar5Filmes() {
             const container = document.querySelector(".div_filmes");
             container.innerHTML = "";
 
-            filmes.forEach((filme) => {
+            for(let i = 0; i < filmes.length;i++){
+                let filme =  filmes[i]
                 container.innerHTML += `
-                        <div class="div_cardFilme">
-                            <img src="./assets/imgFilmes/${filme.imgFilme}" alt="" />
+                <div class="div_cardFilme">
+                    <img src="./assets/imgFilmes/${filme.imgFilme}" alt="" />
 
-                            <div>
-                                <h3>${filme.nomeFilme}</h3>
-                                <span>${filme.notaAvaliacao}/10 <i class="bi bi-star"></i> </span>
-                            </div>
-                        </div>
-        `;
-            });
+                    <div>
+                        <h3>${filme.nomeFilme}</h3>
+                        <span>${filme.notaAvaliacao}/10 <i class="bi bi-star"></i> </span>
+                    </div>
+                </div>
+`;
+            }
         });
 }
 

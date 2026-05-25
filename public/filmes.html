@@ -37,7 +37,9 @@
             const container = document.querySelector(".container_Filmes");
             container.innerHTML = "";
 
-            filmes.forEach((filme) => {
+            for(let i = 0; i < filmes.length;i++){
+
+                let filme = filmes[i]
                 let data = new Date(filme.dataLancamento);
                 let dataBR = data.toLocaleDateString("pt-BR");
           
@@ -52,8 +54,10 @@
                     </div>
                 </div>
             `;
+            }
+               
             });
-        });
+      
 
 
         function EscolherFilme(id){
