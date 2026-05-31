@@ -2,6 +2,7 @@ let coracaoCheio = false;
 let queroAssistirAdicionado = false;
 let notaSelecionada = 0;
 let usuarioLogado = false;
+let avaliacaoExistente = false;
 
 // Faz uma requisição pra pagina
 fetch("navbar.html")
@@ -198,7 +199,11 @@ function enviarAvaliacao(avalaicao) {
         alert("Por favor selecione uma nota valida");
     }
 
-    fetch(`/filmes/enviarAvaliacao`, {
+    let rota = avaliacaoExistente
+    ? "/filmes/atualizarAvaliacao"
+    : "/filmes/enviarAvaliacao";
+
+    fetch(rota, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -326,11 +331,18 @@ function verificarUsuario() {
             idUsuarioServer: idUsuario,
         }),
     })
-        .then((resposta) => resposta.json())
-        .then((dados) => {
-            ipt_avaliacao.innerHTML = dados.descAvaliacao;
-            nota(dados.notaAvaliacao)
-        });
+    .then((resposta) => resposta.json())
+    .then((dados) => {
+        console.log("AVALIAÇÃO:", dados);
+        if (dados && dados.notaAvaliacao) {
+            avaliacaoExistente = true;
+            notaSelecionada = dados.notaAvaliacao;
+            ipt_avaliacao.value = dados.descAvaliacao;
+            nota(dados.notaAvaliacao);
+            btnModal.innerHTML = "Editar Avaliação";
+        }
+    
+    });
 }
  
 

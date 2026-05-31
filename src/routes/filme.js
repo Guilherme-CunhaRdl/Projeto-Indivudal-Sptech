@@ -25,7 +25,11 @@ router.post("/enviarAvaliacao", function (req, res) {
 
 
 router.post("/verificarAvaliacao", function (req, res) {
-    filmeController.verificarAddLista(req, res);
+    filmeController.verificarAvaliacao(req, res);
+});
+
+router.post("/atualizarAvaliacao", function(req, res) {
+    filmeController.atualizarAvaliacao(req, res);
 });
 
 module.exports = router;

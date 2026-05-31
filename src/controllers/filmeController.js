@@ -85,10 +85,33 @@ function verificarAvaliacao(req, res) {
     let idFilme = req.body.idFilmeServer;
 
     filmeModel.verificarAvaliacao(idFilme,idUsuario)
-        .then(resultado => {
-            res.json()
+    .then(resultado => {
+
+        if (resultado.length > 0) {
+            res.json(resultado[0]);
+        } else {
+            res.json(null);
+        }
+
+    })
+    .catch(erro => {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarAvaliacao(req, res) {
+    let idFilme = req.body.idFilmeServer;
+    let idUsuario = req.body.idUsuarioServer;
+    let nota = req.body.notaSelecionadaServer;
+    let avaliacao = req.body.avalaicaoServer;
+
+    filmeModel
+        .atualizarAvaliacao(idFilme, idUsuario, nota, avaliacao)
+        .then((resultado) => {
+            res.json(resultado);
         })
-        .catch(erro => {
+        .catch((erro) => {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
@@ -103,4 +126,5 @@ module.exports = {
     verificarAddLista,
     enviarAvaliacao,
     verificarAvaliacao,
+    atualizarAvaliacao,
 };

@@ -5,7 +5,7 @@ USE bibliotecahowl;
 CREATE TABLE usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nomeUsuario VARCHAR(20),
-email VARCHAR(150),
+email VARCHAR(150) UNIQUE,
 senha VARCHAR(255),
 imgUsuario VARCHAR(200),
 bannerUsuario VARCHAR(200),
@@ -44,17 +44,10 @@ CREATE TABLE avaliacao (
     descAvaliacao VARCHAR(300),
     fkUsuario INT,
     fkFilme INT,
+    UNIQUE(fkUsuario, fkFilme),
     FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
     FOREIGN KEY (fkFilme) REFERENCES filme(idFilme),
     CONSTRAINT chk_nota CHECK (notaAvaliacao BETWEEN 0 AND 10)
-);
-
-CREATE TABLE favorito (
-    fkUsuario INT,
-    fkFilme INT,
-    PRIMARY KEY (fkUsuario, fkFilme),
-    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-    FOREIGN KEY (fkFilme) REFERENCES filme(idFilme)
 );
 
 CREATE TABLE queroAssistir (
@@ -64,15 +57,6 @@ CREATE TABLE queroAssistir (
     FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
     FOREIGN KEY (fkFilme) REFERENCES filme(idFilme)
 );
-
-CREATE TABLE curtida (
-    fkUsuario INT,
-    fkAvaliacao INT,
-    PRIMARY KEY (fkUsuario, fkAvaliacao),
-    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-    FOREIGN KEY (fkAvaliacao) REFERENCES avaliacao(idAvaliacao)
-);
-
 
 CREATE TABLE Quiz(
 idQuiz INT PRIMARY KEY AUTO_INCREMENT,
@@ -105,8 +89,17 @@ fkUsuario INT,
 fkQuiz INT,
 pontuacao INT DEFAULT 0,
 dataResposta DATETIME DEFAULT CURRENT_TIMESTAMP,
+UNIQUE(fkUsuario,fkQuiz),
 FOREIGN KEY(fkUsuario) REFERENCES usuario(idUsuario),
 FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
+);
+
+CREATE TABLE favorito (
+    fkUsuario INT,
+    fkFilme INT,
+    PRIMARY KEY (fkUsuario, fkFilme),
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkFilme) REFERENCES filme(idFilme)
 );
 
 

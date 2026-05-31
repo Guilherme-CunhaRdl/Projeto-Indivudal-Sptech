@@ -41,6 +41,7 @@ function puxarDados() {
             lista_usuario.innerHTML = dados.qtdQueroAssistir;
             favoritos_usuario.innerHTML = dados.favoritos;
             avaliacoes_usuario.innerHTML = dados.avaliacoes;
+            quiz_usuario.innerHTML = dados.quizRespondidos;
         });
 }
 

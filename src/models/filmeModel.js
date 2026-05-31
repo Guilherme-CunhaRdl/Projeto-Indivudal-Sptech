@@ -52,6 +52,18 @@ function verificarAvaliacao(idFilme, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarAvaliacao(idFilme, idUsuario, nota, avaliacao) {
+    var instrucaoSql = `
+        UPDATE avaliacao
+        SET notaAvaliacao = '${nota}',
+            descAvaliacao = '${avaliacao}'
+        WHERE fkUsuario = '${idUsuario}'
+        AND fkFilme = '${idFilme}';
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listar,
     buscarFilme,
@@ -59,4 +71,5 @@ module.exports = {
     verificarAddLista,
     enviarAvaliacao,
     verificarAvaliacao,
+    atualizarAvaliacao
 };
