@@ -37,7 +37,7 @@ function cadastrar(nome, email, senha, imgUsuario) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO usuario (nomeUsuario, email, senha,imgUsuario) VALUES ('${nome}', '${email}', '${senha}','${imgUsuario}');
+        INSERT INTO usuario (nomeUsuario, email, senha,imgUsuario,cargo) VALUES ('${nome}', '${email}', '${senha}','${imgUsuario}','Usuario');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -78,25 +78,7 @@ function RemoverQueroAssistir(idUsuario, idFilme) {
 
 function puxarDados(idUsuario) {
     var instrucaoSql = `
-SELECT
-    u.senha,
-    u.nomeUsuario,
-    u.email,
-    u.imgUsuario,
-    u.bannerUsuario,
-    u.dtCadastro,
-    COUNT(DISTINCT f.fkFilme) AS favoritos,
-    COUNT(DISTINCT qa.fkFilme) AS qtdQueroAssistir,
-    COUNT(DISTINCT a.idAvaliacao) AS avaliacoes
-FROM usuario u
-LEFT JOIN favorito f
-    ON f.fkUsuario = u.idUsuario
-LEFT JOIN avaliacao a
-    ON a.fkUsuario = u.idUsuario
-LEFT JOIN queroAssistir qa
-	ON qa.fkUsuario = u.idUsuario
-WHERE u.idUsuario = ${idUsuario}
-GROUP BY u.idUsuario;;
+    SELECT * FROM vw_PuxarDados WHERE idUsuario = ${idUsuario};
 `;
     return database.executar(instrucaoSql);
 }

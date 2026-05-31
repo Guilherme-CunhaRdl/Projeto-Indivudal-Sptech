@@ -414,3 +414,28 @@ GROUP BY
 	f.nomeFilme,
     q.idQuiz,
     q.nomeQuiz;
+
+
+CREATE VIEW vw_PuxarDados AS
+SELECT
+	u.idUsuario,
+    u.senha,
+    u.nomeUsuario,
+    u.email,
+    u.imgUsuario,
+    u.bannerUsuario,
+    u.dtCadastro,
+    COUNT(DISTINCT f.fkFilme) AS favoritos,
+    COUNT(DISTINCT qa.fkFilme) AS qtdQueroAssistir,
+    COUNT(DISTINCT a.idAvaliacao) AS avaliacoes,
+    COUNT(DISTINCT q.idQuizRespondido) AS quizRespondidos
+FROM usuario u
+LEFT JOIN favorito f
+    ON f.fkUsuario = u.idUsuario
+LEFT JOIN avaliacao a
+    ON a.fkUsuario = u.idUsuario
+LEFT JOIN queroAssistir qa
+	ON qa.fkUsuario = u.idUsuario
+LEFT JOIN QuizRespondido q
+	ON q.fkUsuario = u.idUsuario
+GROUP BY u.idUsuario;
