@@ -1,81 +1,85 @@
 var usuarioModel = require("../models/usuarioModel");
 
-
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-
-    
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
+        usuarioModel
+            .autenticar(email, senha)
+            .then(function (resultadoAutenticar) {
+                console.log(
+                    `\nResultados encontrados: ${resultadoAutenticar.length}`
+                );
+                console.log(
+                    `Resultados: ${JSON.stringify(resultadoAutenticar)}`
+                ); // transforma JSON em String
 
-        usuarioModel.autenticar(email, senha)
-            .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-                        res.json(resultadoAutenticar[0]);
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
-                    } else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-                    }
+                if (resultadoAutenticar.length == 1) {
+                    console.log(resultadoAutenticar);
+                    res.json(resultadoAutenticar[0]);
+                } else if (resultadoAutenticar.length == 0) {
+                    res.status(403).send("Email e/ou senha inválido(s)");
+                } else {
+                    res.status(403).send(
+                        "Mais de um usuário com o mesmo login e senha!"
+                    );
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o login! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
     }
-
 }
-
 
 function autenticarAdm(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    
-
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
+        usuarioModel
+            .autenticar(email, senha)
+            .then(function (resultadoAutenticar) {
+                console.log(
+                    `\nResultados encontrados: ${resultadoAutenticar.length}`
+                );
+                console.log(
+                    `Resultados: ${JSON.stringify(resultadoAutenticar)}`
+                ); // transforma JSON em String
 
-        usuarioModel.autenticar(email, senha)
-            .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-                        res.json(resultadoAutenticar[0]);
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
-                    } else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-                    }
+                if (resultadoAutenticar.length == 1) {
+                    console.log(resultadoAutenticar);
+                    res.json(resultadoAutenticar[0]);
+                } else if (resultadoAutenticar.length == 0) {
+                    res.status(403).send("Email e/ou senha inválido(s)");
+                } else {
+                    res.status(403).send(
+                        "Mais de um usuário com o mesmo login e senha!"
+                    );
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o login! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
     }
-
 }
 
 function cadastrar(req, res) {
@@ -83,10 +87,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var imgUsuario = req.file.filename;
-
-
-
+    var imgUsuario = req.file ? req.file.filename : "calcifer.png";
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -94,34 +95,30 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }else {
-
+    } else {
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha,imgUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+        usuarioModel
+            .cadastrar(nome, email, senha, imgUsuario)
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
     }
 }
 
-
 function favoritar(req, res) {
-
     let idUsuario = req.body.idUsuarioServer;
     let idFilme = req.body.idFilmeServer;
 
-    usuarioModel.favoritar(idUsuario, idFilme)
+    usuarioModel
+        .favoritar(idUsuario, idFilme)
         .then(function (resultado) {
             res.status(200).send("Favoritado com sucesso");
         })
@@ -129,32 +126,29 @@ function favoritar(req, res) {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
-
 }
 
-function queroAssistir(req,res){
-
+function queroAssistir(req, res) {
     let idUsuario = req.body.idUsuarioServer;
     let idFilme = req.body.idFilmeServer;
 
-    usuarioModel.queroAssistir(idUsuario,idFilme)
-        .then(function (resultado){
-            res.status(200).send("Adicionado a lista com sucesso")
+    usuarioModel
+        .queroAssistir(idUsuario, idFilme)
+        .then(function (resultado) {
+            res.status(200).send("Adicionado a lista com sucesso");
         })
         .catch(function (erro) {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
-    
-
 }
 
 function RemoverFavoritar(req, res) {
-
     let idUsuario = req.body.idUsuarioServer;
     let idFilme = req.body.idFilmeServer;
 
-    usuarioModel.RemoverFavoritar(idUsuario, idFilme)
+    usuarioModel
+        .RemoverFavoritar(idUsuario, idFilme)
         .then(function (resultado) {
             res.status(200).send("Removido Favoritado com sucesso");
         })
@@ -162,34 +156,32 @@ function RemoverFavoritar(req, res) {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
-
 }
 
-function RemoverQueroAssistir(req,res){
-
+function RemoverQueroAssistir(req, res) {
     let idUsuario = req.body.idUsuarioServer;
     let idFilme = req.body.idFilmeServer;
 
-    usuarioModel.RemoverQueroAssistir(idUsuario,idFilme)
-        .then(function (resultado){
-            res.status(200).send("Removido da lista com sucesso")
+    usuarioModel
+        .RemoverQueroAssistir(idUsuario, idFilme)
+        .then(function (resultado) {
+            res.status(200).send("Removido da lista com sucesso");
         })
         .catch(function (erro) {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
-    
-
 }
 
 function puxarDados(req, res) {
     var idUsuario = req.params.id;
 
-    usuarioModel.puxarDados(idUsuario)
-        .then(resultado => {
+    usuarioModel
+        .puxarDados(idUsuario)
+        .then((resultado) => {
             res.json(resultado);
         })
-        .catch(erro => {
+        .catch((erro) => {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
@@ -198,31 +190,30 @@ function puxarDados(req, res) {
 function puxar5Filmes(req, res) {
     var idUsuario = req.params.id;
 
-    usuarioModel.puxar5Filmes(idUsuario)
-        .then(resultado => {
+    usuarioModel
+        .puxar5Filmes(idUsuario)
+        .then((resultado) => {
             res.json(resultado);
         })
-        .catch(erro => {
+        .catch((erro) => {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
         });
 }
 
-
-
-function editarPerfil(req,res){
-    var idUsuario = req.body.idUsuarioServer
+function editarPerfil(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    
+
     var imgUsuario = null;
     var bannerUsuario = null;
-    
+
     if (req.files["imgServer"]) {
         imgUsuario = req.files["imgServer"][0].filename;
     }
-    
+
     if (req.files["bannerServer"]) {
         bannerUsuario = req.files["bannerServer"][0].filename;
     }
@@ -233,25 +224,28 @@ function editarPerfil(req,res){
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }else {
-
-        usuarioModel.editarPerfil(idUsuario,nome, email, senha,imgUsuario,bannerUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+    } else {
+        usuarioModel
+            .editarPerfil(
+                idUsuario,
+                nome,
+                email,
+                senha,
+                imgUsuario,
+                bannerUsuario
+            )
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
     }
-
 }
 
 module.exports = {
@@ -265,4 +259,4 @@ module.exports = {
     puxar5Filmes,
     autenticarAdm,
     editarPerfil,
-}
+};

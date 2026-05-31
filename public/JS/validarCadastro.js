@@ -1,21 +1,12 @@
-let erroCadastro = true
 function cadastrar() {
-    // aguardar();
 
-    /*Validando pra ver se o cadastro ta tudo certo*/
-    validarEmail();
-    validarSenha();
-    validarNome();
-    if(erroCadastro == true){
-      return;
+    if (!validarFormulario()) {
+        return;
     }
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
     var fotoVar = iptFoto.files[0];
 
@@ -24,9 +15,12 @@ function cadastrar() {
     formData.append("nomeServer", nomeVar);
     formData.append("emailServer", emailVar);
     formData.append("senhaServer", senhaVar);
-    formData.append("foto", fotoVar);
 
-    // Enviando o valor da nova input
+    // Só envia a foto se o usuário escolher uma
+    if (fotoVar) {
+        formData.append("foto", fotoVar);
+    }
+
     fetch("/usuarios/cadastrar", {
         method: "POST",
         body: formData
@@ -35,261 +29,179 @@ function cadastrar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-               
 
-                alert('Cadastro realizado com sucesso! Redirecionando para tela de Login...')
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
 
-                   
-                    setTimeout(function () {
-                        window.location = "./login.html";
-                    }, 1000); 
-                
-
+                setTimeout(function () {
+                    window.location = "./login.html";
+                }, 1000);
 
             } else {
                 throw "Houve um erro ao tentar realizar o cadastro!";
             }
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+        .catch(function (erro) {
+            console.log(`#ERRO: ${erro}`);
         });
 
     return false;
 }
 
+function validarFormulario() {
+    let erro = false;
+
+    if (!validarNome()) erro = true;
+    if (!validarEmail()) erro = true;
+    if (!validarSenha()) erro = true;
+
+    return !erro;
+}
+
 function validarNome() {
-    erroCadastro = false;
-    var nomeVar = nome_input.value;
+    var nomeVar = nome_input.value.trim();
 
     let listaCaracEspecNome = [
-        "!",
-        "@",
-        "#",
-        "$",
-        "%",
-        "¨",
-        "&",
-        "*",
-        "(",
-        ")",
-        "-",
-        "_",
-        "=",
-        "+",
-        "[",
-        "]",
-        "{",
-        "}",
-        ";",
-        ":",
-        "/",
-        "?",
-        ".",
-        ",",
-        "<",
-        ">",
-        "\\",
-        "|",
-        "'",
-        '"',
-        "`",
-        "~",
-        "^",
+        "!", "@", "#", "$", "%", "¨", "&", "*", "(", ")",
+        "-", "_", "=", "+", "[", "]", "{", "}", ";", ":",
+        "/", "?", ".", ",", "<", ">", "\\", "|", "'", '"',
+        "`", "~", "^"
     ];
 
     nome_input.classList.remove("inputErro");
 
     if (nomeVar == "") {
-        console.log("IFFFFFF");
         nome_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_nomeErro.innerHTML = "Campo Vazio";
-        return;
-    } else {
-        ipt_nomeErro.innerHTML = "";
+        ipt_nomeErro.innerHTML = "Campo vazio";
+        return false;
     }
 
-
-
-    if (nomeVar.length <= 3) {
+    if (nomeVar.length < 4) {
         nome_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_nomeErro.innerHTML =
-            "Nome de usuario pequeno de mais(minimo: 4 caracteres)";
-    } else if (nomeVar.length > 20) {
+        ipt_nomeErro.innerHTML = "Nome deve ter no mínimo 4 caracteres";
+        return false;
+    }
+
+    if (nomeVar.length > 20) {
         nome_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_nomeErro.innerHTML =
-            "Nome de usuario grande de mais(Maximo:20 caracteres)";
+        ipt_nomeErro.innerHTML = "Nome deve ter no máximo 20 caracteres";
+        return false;
     }
 
     for (let i = 0; i < listaCaracEspecNome.length; i++) {
         if (nomeVar.includes(listaCaracEspecNome[i])) {
             nome_input.classList.add("inputErro");
-            erroCadastro = true;
-            ipt_nomeErro.innerHTML =
-                "Nome de usuario não pode conter caracteres especiais";
-            break;
+            ipt_nomeErro.innerHTML = "Nome não pode conter caracteres especiais";
+            return false;
         }
     }
 
-    if (erroCadastro == true) {
-        return;
-    }
+    ipt_nomeErro.innerHTML = "";
+    return true;
 }
 
-
-
 function validarEmail() {
-    erroCadastro = false;
-    let indiceDoArroba = 0;
+    var emailVar = email_input.value.trim();
 
     let listaCaracEspecEmail = [
-        "!",
-        "#",
-        "$",
-        "%",
-        "¨",
-        "&",
-        "*",
-        "(",
-        ")",
-        "-",
-        "_",
-        "=",
-        "+",
-        "[",
-        "]",
-        "{",
-        "}",
-        ";",
-        ":",
-        "/",
-        "?",
-        ",",
-        "<",
-        ">",
-        "\\",
-        "|",
-        "'",
-        '"',
-        "`",
-        "~",
-        "^",
+        "!", "#", "$", "%", "¨", "&", "*", "(", ")",
+        "-", "_", "=", "+", "[", "]", "{", "}", ";", ":",
+        "/", "?", ",", "<", ">", "\\", "|", "'", '"',
+        "`", "~", "^"
     ];
-
-    var emailVar = email_input.value;
 
     email_input.classList.remove("inputErro");
 
     if (emailVar == "") {
         email_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_emailErro.innerHTML = "Campo Vazio";
-        return;
-    } else {
-        ipt_emailErro.innerHTML = "";
+        ipt_emailErro.innerHTML = "Campo vazio";
+        return false;
     }
 
     for (let i = 0; i < listaCaracEspecEmail.length; i++) {
         if (emailVar.includes(listaCaracEspecEmail[i])) {
             email_input.classList.add("inputErro");
-            erroCadastro = true;
             ipt_emailErro.innerHTML =
-                "Email não pode conter caracteres especiais alem de '@' e '.' ";
-            break;
+                "Email só pode conter '@' e '.' como caracteres especiais";
+            return false;
         }
     }
 
-    if (erroCadastro == true) {
-        return;
-    }
-
-    if(!emailVar.includes('@')){
+    if (!emailVar.includes("@")) {
         email_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_emailErro.innerHTML = "Email Precisa Conter o caractere '@' ";
-        return;
+        ipt_emailErro.innerHTML = "Email precisa conter '@'";
+        return false;
     }
 
-    if(!emailVar.includes('.')){
+    if (!emailVar.includes(".")) {
         email_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_emailErro.innerHTML = "Email Precisa Conter o caractere '.' ";
-        return;
+        ipt_emailErro.innerHTML = "Email precisa conter '.'";
+        return false;
     }
 
+    let indiceDoArroba = emailVar.indexOf("@");
 
-
-    for(let i = 0; i< emailVar.length;i++){
-        if(emailVar[i] == '@'){
-            indiceDoArroba = i
-        }
-    }
-
-    //Verifica se ta no inicio ou no final o @
-    if (indiceDoArroba == 0 || indiceDoArroba == emailVar.length - 1){
+    if (
+        indiceDoArroba == 0 ||
+        indiceDoArroba == emailVar.length - 1
+    ) {
         email_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_emailErro.innerHTML = "O '@' não pode ser no inicio ou no final do E-mail";
-        return;
+        ipt_emailErro.innerHTML =
+            "O '@' não pode estar no início ou no final";
+        return false;
     }
-    
-    
 
+    ipt_emailErro.innerHTML = "";
+    return true;
 }
 
 function validarSenha() {
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    erroCadastro = false;
 
     senha_input.classList.remove("inputErro");
     confirmacao_senha_input.classList.remove("inputErro");
 
-
     if (senhaVar == "") {
         senha_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_senhaErro.innerHTML = "Campo Vazio";
-        return;
-    } else {
-        ipt_senhaErro.innerHTML = "";
+        ipt_senhaErro.innerHTML = "Campo vazio";
+        return false;
     }
 
     if (confirmacaoSenhaVar == "") {
         confirmacao_senha_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_confirmarSenhaErro.innerHTML = "Campo Vazio";
-        return;
-    } else {
-        ipt_confirmarSenhaErro.innerHTML = "";
+        ipt_confirmarSenhaErro.innerHTML = "Campo vazio";
+        return false;
+    }
+
+    if (senhaVar.length < 6) {
+        senha_input.classList.add("inputErro");
+        ipt_senhaErro.innerHTML = "Senha deve ter no mínimo 6 caracteres";
+        return false;
     }
 
     if (senhaVar != confirmacaoSenhaVar) {
         senha_input.classList.add("inputErro");
         confirmacao_senha_input.classList.add("inputErro");
-        erroCadastro = true;
-        ipt_confirmarSenhaErro.innerHTML = "Senhas não coincidem";
+
         ipt_senhaErro.innerHTML = "Senhas não coincidem";
-        return;
-    } else {
-        ipt_confirmarSenhaErro.innerHTML = "";
-        ipt_senhaErro.innerHTML = "";
+        ipt_confirmarSenhaErro.innerHTML = "Senhas não coincidem";
+
+        return false;
     }
 
+    ipt_senhaErro.innerHTML = "";
+    ipt_confirmarSenhaErro.innerHTML = "";
 
+    return true;
 }
 
 function previewImagem() {
-
     var arquivo = iptFoto.files[0];
 
-    if (arquivo) {
-
-        var novaImagem = URL.createObjectURL(arquivo);
-
-        preview.src = novaImagem;
+    if (!arquivo) {
+        preview.src = "./assets/calcifer.png";
+        return;
     }
+
+    preview.src = URL.createObjectURL(arquivo);
 }
