@@ -62,8 +62,8 @@ function listarUsuarios() {
 
                     <div class="infoUsuario">
 
-                        <button class="btn_usuario editar">
-                            <i class="bi bi-pencil"></i>
+                        <button class="btn_usuario editar" onclick ="abrirModal()">
+                            <i class="bi bi-info-circle"></i>
                         </button>
 
                         <button 
@@ -83,4 +83,12 @@ function listarUsuarios() {
         .catch((erro) => {
             console.log(erro);
         });
+}
+
+function abrirModal() {
+    modalEditar.style.display = "flex";
+}
+
+function fecharModal() {
+    modalEditar.style.display = "none";
 }
