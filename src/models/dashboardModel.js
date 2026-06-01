@@ -140,6 +140,73 @@ function listarUsuarios() {
     return database.executar(instrucaoSql);
 }
 
+function buscarPerfil(idUsuario) {
+
+    var instrucaoSql = `
+SELECT
+    u.nomeUsuario,
+    u.imgUsuario,
+    u.bannerUsuario,
+
+    COUNT(DISTINCT f.fkFilme) AS favoritos,
+
+    COUNT(DISTINCT q.fkFilme) AS lista,
+
+    COUNT(DISTINCT av.idAvaliacao) AS qtdAvaliacao
+
+    FROM usuario u
+    LEFT JOIN favorito f
+    ON f.fkUsuario = u.idUsuario
+    LEFT JOIN queroAssistir q
+    ON q.fkUsuario = u.idUsuario
+    LEFT JOIN avaliacao av
+    ON av.fkUsuario = u.idUsuario
+    WHERE u.idUsuario = ${idUsuario}
+    GROUP BY u.idUsuario;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarQuizzesUsuario(idUsuario) {
+    var instrucaoSql = `
+        SELECT
+            qr.pontuacao,
+            COUNT(pq.idPergunta) AS totalPerguntas
+        FROM QuizRespondido qr
+        INNER JOIN PerguntaQuiz pq
+            ON pq.fkQuiz = qr.fkQuiz
+        WHERE qr.fkUsuario = ${idUsuario}
+        GROUP BY
+            qr.idQuizRespondido,
+            qr.pontuacao;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+
+function DeletarUsuario(idUsuario) {
+    var instrucaoSql = `
+        DELETE FROM favorito
+        WHERE fkUsuario = ${idUsuario};
+
+        DELETE FROM queroAssistir
+        WHERE fkUsuario = ${idUsuario};
+
+        DELETE FROM avaliacao
+        WHERE fkUsuario = ${idUsuario};
+
+        DELETE FROM QuizRespondido
+        WHERE fkUsuario = ${idUsuario};
+
+        DELETE FROM usuario
+        WHERE idUsuario = ${idUsuario};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarKPIs,
     buscarGeneroFilmes,
@@ -147,5 +214,8 @@ module.exports = {
     filmesMaisFavoritados,
     listarFilmes,
     puxarFilme,
-    listarUsuarios
+    listarUsuarios,
+    buscarPerfil,
+    buscarQuizzesUsuario,
+    DeletarUsuario
 };

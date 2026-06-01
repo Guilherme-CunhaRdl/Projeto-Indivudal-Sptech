@@ -6,3 +6,10 @@ fetch("sideBar.html")
 
         carregarDados();
     });
+
+    function sair(){
+        console.log('Sair')
+        sessionStorage.clear();
+        window.location = "../index.html";
+    
+    }

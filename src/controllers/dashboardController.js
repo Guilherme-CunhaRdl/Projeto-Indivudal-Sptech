@@ -86,6 +86,50 @@ function listarUsuarios(req, res) {
         });
 }
 
+function buscarPerfil(req, res) {
+
+    let idUsuario = req.params.idUsuario;
+
+    dashboardModel
+        .buscarPerfil(idUsuario)
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
+function buscarQuizzesUsuario(req, res) {
+
+    let idUsuario = req.params.idUsuario;
+
+    dashboardModel
+        .buscarQuizzesUsuario(idUsuario)
+        .then((resultado) => {
+            res.json(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
+function DeletarUsuario(req, res){
+
+    let idUsuario = req.params.idUsuario;
+
+    dashboardModel
+    .DeletarUsuario(idUsuario)
+    .then((resultado) => {
+        res.json(resultado);
+    })
+    .catch((erro) => {
+        console.log(erro);
+        res.status(500).json(erro);
+    });
+}
 
 module.exports = {
     buscarKPIs,
@@ -94,5 +138,8 @@ module.exports = {
     filmesMaisFavoritados,
     listarFilmes,
     puxarFilme,
-    listarUsuarios
+    listarUsuarios,
+    buscarPerfil,
+    buscarQuizzesUsuario,
+    DeletarUsuario
 }

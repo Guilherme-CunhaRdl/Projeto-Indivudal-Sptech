@@ -15,151 +15,64 @@
                 <div class="div_conteudoInfo">
                     <div class="div_topbar"><h3>Usuarios</h3></div>
 
-                    <div class="div_kpi">
-                        <div class="div_caixaKpi">
-                            <div
-                                class="kpi_icone"
-                                style="background-color: #1f2f26"
-                            >
-                                <i
-                                    class="bi bi-camera-reels-fill"
-                                    style="color: #6fb376"
-                                ></i>
-                            </div>
-                            <div class="kpi_info">
-                                <h2>25</h2>
-                                <p>Filmes Cadastrados</p>
-                            </div>
-                        </div>
-
-                        <div class="div_caixaKpi">
-                            <div
-                                class="kpi_icone"
-                                style="background-color: #252336"
-                            >
-                                <i
-                                    class="bi bi-people"
-                                    style="color: #553e8b"
-                                ></i>
-                            </div>
-                            <div class="kpi_info">
-                                <h3>25</h3>
-                                <p>Usuarios Registrados</p>
-                            </div>
-                        </div>
-
-                        <div class="div_caixaKpi">
-                            <div
-                                class="kpi_icone"
-                                style="background-color: #322b1c"
-                            >
-                                <i
-                                    class="bi bi-star-fill"
-                                    style="color: #f0aa2e"
-                                ></i>
-                            </div>
-                            <div class="kpi_info">
-                                <h3>25</h3>
-                                <p>Filmes favoritados</p>
-                            </div>
-                        </div>
-
-                        <div class="div_caixaKpi">
-                            <div
-                                class="kpi_icone"
-                                style="background-color: #192636"
-                            >
-                                <i
-                                    class="bi bi-heart-fill"
-                                    style="color: #4d98d9"
-                                ></i>
-                            </div>
-                            <div class="kpi_info">
-                                <h3>25</h3>
-                                <p>Filmes Curtidos</p>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="div_usuarios">
                         <div class="div_dadosUsuario">
-                            <div class="div_filtros">
-                                <select name="" id="" class="selectFuncao">
-                                    <option value="" selected disabled>
-                                        Selecione a função
-                                    </option>
-                                    <option value="adm">Administrador</option>
-                                    <option value="Usuario">Usuário</option>
-                                </select>
-
-                                <input
-                                    type="text"
-                                    placeholder="Digite o nome do Usuario"
-                                />
-                            </div>
-
-                            <div class="div_infoUsuario" id="divUsuarios">
-                            
-
-
-                               
-
-
-                            </div>
+                            <div class="div_infoUsuario" id="divUsuarios"></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="div_footer">TESTE</div>
             </div>
         </div>
 
-                <div class="modalEditar" id="modalEditar">
+        <div class="modalInfo" id="modalInfo">
             <div class="div_modal">
                 <div class="div_topoModal">
-                    <h1>GUILHERME CUNHA</h1>
+                    <h1 id="nomeUsuarioModal">GUILHERME CUNHA</h1>
 
                     <button class="btnFechar" onclick="fecharModal()">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
 
-                <div class="div_bannerEditar">
+                <div class="div_bannerInfo">
                     <img
                         src="/assets/BannerPadrao.png"
                         id="banner_usuarioEditar"
                     />
-
                 </div>
 
-                <div class="div_fotoPerfilEditar">
-                    <img src="./assets/HakuIcon.webp" id="img_usuarioEditar" />
-
-    
+                <div class="div_fotoPerfilInfo">
+                    <img src="./assets/HakuIcon.webp" id="img_usuarioInfo" />
                 </div>
 
                 <div class="div_cardsModal">
-                    <div class="card Favoritos">
-
+                    <div class="card">
+                        <i class="bi bi-heart-fill"></i>
+                        <h2 id="qtdFavoritos">18</h2>
+                        <span>Filmes Favoritados</span>
                     </div>
 
-                    <div class="card Lista">
-
+                    <div class="card">
+                        <i class="bi bi-bookmark-fill"></i>
+                        <h2 id="qtdLista">0</h2>
+                        <span>Na Lista</span>
                     </div>
 
-                    <div class="card QuizFeito">
-
+                    <div class="card">
+                        <i class="bi bi-star-fill"></i>
+                        <h2 id="qtdAvaliacoes">22</h2>
+                        <span>Avaliações Feitas</span>
                     </div>
 
-                    <div class="card MediaDeAcertos">
-
+                    <div class="card">
+                        <i class="bi bi-trophy-fill"></i>
+                        <h2 id="mediaQuiz">84%</h2>
+                        <span>Média de Acertos</span>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
     </body>
 </html>
 

@@ -53,12 +53,16 @@ function finalizarQuiz(fkUsuario, fkQuiz, pontuacao) {
         INSERT INTO QuizRespondido
         (quizRespondido, fkUsuario, fkQuiz, pontuacao)
         VALUES
-        (true, ${fkUsuario}, ${fkQuiz}, ${pontuacao});
+        (true, ${fkUsuario}, ${fkQuiz}, ${pontuacao})
+
+        ON DUPLICATE KEY UPDATE
+        pontuacao = ${pontuacao},
+        dataResposta = CURRENT_TIMESTAMP;
     `;
 
     return database.executar(instrucaoSql);
 
-    return database.executar(instrucaoSql);
+
 }
 
 module.exports = {

@@ -1,12 +1,10 @@
 window.onload = listarUsuarios;
 
 function listarUsuarios() {
-
     fetch("/dashboard/listarUsuarios")
         .then((resposta) => resposta.json())
 
         .then((dados) => {
-
             divUsuarios.innerHTML = `
             
                 <div class="div_caixaUsuarioTopo">
@@ -27,8 +25,7 @@ function listarUsuarios() {
                 </div>
             `;
 
-            for(let i = 0; i < dados.length; i++) {
-
+            for (let i = 0; i < dados.length; i++) {
                 let usuario = dados[i];
 
                 divUsuarios.innerHTML += `
@@ -62,7 +59,7 @@ function listarUsuarios() {
 
                     <div class="infoUsuario">
 
-                        <button class="btn_usuario editar" onclick ="abrirModal()">
+                        <button class="btn_usuario editar" onclick ="abrirModal(${usuario.idUsuario})">
                             <i class="bi bi-info-circle"></i>
                         </button>
 
@@ -85,10 +82,76 @@ function listarUsuarios() {
         });
 }
 
-function abrirModal() {
-    modalEditar.style.display = "flex";
+function abrirModal(idUsuario) {
+    modalInfo.style.display = "flex";
+
+    buscarDadosModal(idUsuario);
+    buscarMediaDeAcertos(idUsuario);
+}
+
+function buscarDadosModal(idUsuario) {
+    fetch(`/dashboard/buscarPerfil/${idUsuario}`)
+        .then((res) => res.json())
+        .then((dados) => {
+            let usuario = dados[0];
+            console.log(usuario);
+
+            nomeUsuarioModal.innerHTML = usuario.nomeUsuario;
+
+            img_usuarioInfo.src = `../assets/imgUsuarios/${usuario.imgUsuario}`;
+
+            qtdFavoritos.innerHTML = usuario.favoritos;
+            qtdLista.innerHTML = usuario.lista;
+            qtdAvaliacoes.innerHTML = usuario.qtdAvaliacao;
+
+            banner_usuarioInfo.src = usuario.bannerUsuario
+                ? `../assets/imgUsuarios/${usuario.bannerUsuario}`
+                : "../assets/BannerPadrao.png";
+        });
+}
+
+function buscarMediaDeAcertos(idUsuario) {
+    fetch(`/dashboard/buscarQuizzesUsuario/${idUsuario}`)
+        .then((res) => res.json())
+        .then((quizzes) => {
+            let somaPorcentagem = 0;
+            for (let i = 0; i < quizzes.length; i++) {
+                somaPorcentagem +=
+                    (quizzes[i].pontuacao / quizzes[i].totalPerguntas) * 100;
+            }
+
+            let media =
+                quizzes.length > 0 ? somaPorcentagem / quizzes.length : 0;
+
+            mediaQuiz.innerHTML = `${media.toFixed(1)}%`;
+        });
+}
+
+function deletarUsuario(idUsuario) {
+
+    let resposta = prompt('Você realmente deseja excluir esse usuario?(Digite "Sim" ou "Não")').toLowerCase()
+
+
+    if(resposta == 'sim'){
+        fetch(`/dashboard/DeletarUsuario/${idUsuario}`, {
+            method: "POST"
+        })
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (resultado) {
+            console.log(resultado);
+            window.location.reload();
+        })
+        .catch(function (erro) {
+            console.log("Houve um erro ao deletar o usuário:", erro);
+        });
+    }else{
+        return;
+    }
+
 }
 
 function fecharModal() {
-    modalEditar.style.display = "none";
+    modalInfo.style.display = "none";
 }

@@ -32,4 +32,17 @@ router.get("/listarUsuarios", function(req, res) {
     dashboardController.listarUsuarios(req, res);
 });
 
+router.get("/buscarPerfil/:idUsuario", function(req, res) {
+    dashboardController.buscarPerfil(req, res);
+});
+
+router.get("/buscarQuizzesUsuario/:idUsuario", function(req, res) {
+    dashboardController.buscarQuizzesUsuario(req, res);
+});
+
+router.post("/DeletarUsuario/:idUsuario", function(req, res) {
+    dashboardController.DeletarUsuario(req, res);
+});
+
+
 module.exports = router;
