@@ -5,7 +5,8 @@ function buscarKPIs() {
         SELECT 
             (SELECT COUNT(*) FROM filme) AS totalFilmes,
             (SELECT COUNT(*) FROM usuario) AS totalUsuarios,
-            (SELECT COUNT(*) FROM favorito) AS totalFavoritos;
+            (SELECT COUNT(*) FROM favorito) AS totalFavoritos,
+            (SELECT COUNT(*) FROM QuizRespondido) AS totalQuizResp;
     `;
 
     return database.executar(instrucaoSql);

@@ -14,6 +14,8 @@ function buscarKPIs() {
 
             filmesFavoritados.innerHTML = dados[0].totalFavoritos;
 
+            qtdQuizRespondidos.innerHTML = dados[0].totalQuizResp;
+
             
         })
         .catch((erro) => {
