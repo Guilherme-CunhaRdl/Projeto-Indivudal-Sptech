@@ -44,5 +44,12 @@ router.post("/DeletarUsuario/:idUsuario", function(req, res) {
     dashboardController.DeletarUsuario(req, res);
 });
 
+router.get("/taxaQuiz/:idFilme", function(req, res) {
+    dashboardController.buscarTaxaQuiz(req, res);
+});
+
+
+
+
 
 module.exports = router;

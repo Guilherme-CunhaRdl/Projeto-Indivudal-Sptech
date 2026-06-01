@@ -42,7 +42,6 @@ LIMIT 5;`;
 }
 
 function filmesMaisFavoritados() {
-
     var instrucaoSql = `
         SELECT 
             f.nomeFilme,
@@ -58,9 +57,7 @@ function filmesMaisFavoritados() {
     return database.executar(instrucaoSql);
 }
 
-
 function listarFilmes() {
-
     var instrucaoSql = `
         SELECT 
             f.idFilme,
@@ -85,7 +82,6 @@ function listarFilmes() {
 }
 
 function puxarFilme(idFilme) {
-
     var instrucaoSql = `
         SELECT 
             f.idFilme,
@@ -123,9 +119,7 @@ function puxarFilme(idFilme) {
     return database.executar(instrucaoSql);
 }
 
-
 function listarUsuarios() {
-
     var instrucaoSql = `
         SELECT 
             idUsuario,
@@ -141,7 +135,6 @@ function listarUsuarios() {
 }
 
 function buscarPerfil(idUsuario) {
-
     var instrucaoSql = `
 SELECT
     u.nomeUsuario,
@@ -185,7 +178,6 @@ function buscarQuizzesUsuario(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-
 function DeletarUsuario(idUsuario) {
     var instrucaoSql = `
         DELETE FROM favorito
@@ -207,6 +199,23 @@ function DeletarUsuario(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarTaxaQuiz(idFilme) {
+    var instrucaoSql = `
+SELECT
+    qr.pontuacao,
+    COUNT(pq.idPergunta) AS totalPerguntas
+FROM QuizRespondido qr
+INNER JOIN Quiz q
+    ON q.idQuiz = qr.fkQuiz
+INNER JOIN PerguntaQuiz pq
+    ON pq.fkQuiz = q.idQuiz
+WHERE q.fkFilme = ${idFilme}
+GROUP BY qr.idQuizRespondido;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarKPIs,
     buscarGeneroFilmes,
@@ -217,5 +226,6 @@ module.exports = {
     listarUsuarios,
     buscarPerfil,
     buscarQuizzesUsuario,
-    DeletarUsuario
+    DeletarUsuario,
+    buscarTaxaQuiz,
 };

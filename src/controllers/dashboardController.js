@@ -131,6 +131,20 @@ function DeletarUsuario(req, res){
     });
 }
 
+function buscarTaxaQuiz(req, res) {
+
+    let idFilme = req.params.idFilme;
+
+    dashboardModel.buscarTaxaQuiz(idFilme)
+        .then((resultado) => {
+            res.json(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
 module.exports = {
     buscarKPIs,
     buscarGeneroFilmes,
@@ -141,5 +155,6 @@ module.exports = {
     listarUsuarios,
     buscarPerfil,
     buscarQuizzesUsuario,
-    DeletarUsuario
+    DeletarUsuario,
+    buscarTaxaQuiz
 }

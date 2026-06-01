@@ -71,6 +71,7 @@ function abrirModal(idFilme) {
             mediaAvaliacoesModal.innerHTML = `${dados[0].mediaAvaliacoes} (Avaliações)`;
             imgModal.src = `../assets/imgFilmes/${dados[0].imgFilme}`;
             dataFilme.innerHTML = ` ${ano} • ${dados[0].qtdMinutos} Min •`;
+            buscarTaxaQuiz(dados[0].idFilme)
         })
         .catch((erro) => {
             console.log(erro);
@@ -80,4 +81,27 @@ function abrirModal(idFilme) {
 function fecharModal() {
     document.getElementById("modalFilme").style.display = "none";
     document.body.style.overflow = "auto";
+}
+
+function buscarTaxaQuiz(idFilme) {
+    fetch(`/dashboard/taxaQuiz/${idFilme}`)
+        .then(res => res.json())
+        .then(dados => {
+
+            let soma = 0;
+
+            for(let i = 0; i < dados.length; i++) {
+
+                soma +=
+                    (dados[i].pontuacao /
+                    dados[i].totalPerguntas) * 100;
+            }
+
+            let media = dados.length > 0
+                ? soma / dados.length
+                : 0;
+
+            taxaQuiz.innerHTML =
+                `${media.toFixed(1)}%`;
+        });
 }
