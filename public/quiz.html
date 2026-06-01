@@ -38,16 +38,6 @@
                             <i class="bi bi-patch-question"></i>
                             <span id="qtdPergunta">10 perguntas</span>
                         </div>
-
-                        <div class="quiz_info">
-                            <i class="bi bi-bar-chart"></i>
-                            <span>Médio</span>
-                        </div>
-
-                        <div class="quiz_info">
-                            <i class="bi bi-clock"></i>
-                            <span>5 min</span>
-                        </div>
                     </div>
 
                     <button class="btn_comecarQuiz" onclick="iniciarQuiz()">
@@ -70,10 +60,10 @@
         <div class="quiz_perguntas">
             <div class="quiz_card">
                 <div class="quiz_topo">
-                    <span id="numeroPergunta" >Pergunta 1 de 10</span>
+                    <span>Pergunta <span id="numeroPergunta">1</span> de 5</span>
 
                     <div class="barra_progresso">
-                        <div class="progresso"></div>
+                        <div class="progresso" id="progresso"></div>
                     </div>
                 </div>
 

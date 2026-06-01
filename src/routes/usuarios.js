@@ -14,7 +14,7 @@ router.post("/autenticar", function (req, res) {
 });
 
 router.post("/autenticarAdm", function (req, res) {
-    usuarioController.autenticar(req, res);
+    usuarioController.autenticarAdm(req, res);
 });
 
 router.post("/favoritar", function (req, res) {

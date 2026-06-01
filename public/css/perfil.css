@@ -23,7 +23,7 @@ body {
 .div_btnEditar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: end;
     align-items: end;
     width: 20%;
     height: 100%;

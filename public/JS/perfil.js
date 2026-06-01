@@ -204,15 +204,8 @@ function puxarLista() {
 
                 <img src="./assets/imgFilmes/${registro.imgFilme}">
 
-                <div class="overlayFilme">
 
-                    <button class="btnRemover">
-                        <i class="bi bi-bookmark-dash-fill"></i>
-                        REMOVER
-                    </button>
-
-                </div>
-
+                
             </div>
 
             <div class="infoFilme">

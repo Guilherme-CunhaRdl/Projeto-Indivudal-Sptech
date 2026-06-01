@@ -18,6 +18,8 @@ function iniciarQuiz() {
 }
 
 function mostrarPergunta() {
+    numeroPergunta.innerHTML = perguntaAtual + 1
+    progresso.style.width = (perguntaAtual + 1) * 20 + '%'
     tituloPergunta.innerHTML = perguntas[perguntaAtual].tituloPergunta;
     respostas = perguntas[perguntaAtual].respostas
     respostas.sort(() => Math.random() - 0.5);
